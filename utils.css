@@ -3,10 +3,10 @@
 
 :root{
     --poppins: "Poppins", sans-serif;
-    --slate300: #cbd5e1;
+    --slate300: rgb(203, 213, 225);
     --slate600: rgb(71, 85, 105);
     --slate900: rgb(15, 23, 42);
-    --slate50: #f8fafc;
+    --slate50: rgb(248, 250, 252);
 }
 *{
     margin: 0;

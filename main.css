@@ -1,0 +1,51 @@
+
+
+
+
+.main__wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(203, 213, 225, 0.39);
+}
+
+.main__sidebar{
+    width: auto;
+    background-color: rgba(71, 85, 105, 0.678);
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+.main__user{
+    width: 100%;
+    padding: 20px 20px 10px 20px;
+    margin-bottom: 100px;
+    
+}
+
+h1{
+    font-weight: 290;
+}
+
+.main__sidebar nav ul li a{
+    display: flex;
+    width: 100%;
+    color: rgb(248, 250, 252);
+    font-weight: 600;
+    align-items: end;
+    justify-content: start;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+}
+
+
+a:hover{
+    transition: 0.3s ease-in;
+    background-color: rgba(71, 85, 105, 0.774);
+    cursor: pointer;
+}
