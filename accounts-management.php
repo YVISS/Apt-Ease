@@ -2,6 +2,19 @@
 session_start();
 ?>
 
+<?php
+if (isset($_SESSION['username'])) {
+    
+    if (isset($_SESSION['success_message'])) {
+        echo "<script>showToast('".$_SESSION['success_message']."');</script>";
+        unset($_SESSION['success_message']); 
+    }
+} else {
+    header("location:login.php");
+}
+
+?>
+
 <html>
 <head>
     <title>Accounts Management</title>
@@ -67,7 +80,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    align: center;
+    align-items: center;
 }
 
 th,
@@ -229,18 +242,7 @@ header h1 {
         </form>
     </div>
 </header>
-<?php
-if (isset($_SESSION['username'])) {
-    
-    if (isset($_SESSION['success_message'])) {
-        echo "<script>showToast('".$_SESSION['success_message']."');</script>";
-        unset($_SESSION['success_message']); 
-    }
-} else {
-    header("location:login.php");
-}
 
-?>
   <br> <a href="index.php">Home</a>
 <div class="search-container">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
