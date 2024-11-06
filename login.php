@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="modern-normalize.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="utils.css">
     <link rel="stylesheet" href="login.css">
     <title>Apt-Ease | Login</title>
@@ -29,7 +30,7 @@
                         echo "<p class='error'>$errorMessage</p>";
                     }
                     ?>
-                <button type="submit" name="btnlogin" value="Login">Login</button>
+                <button class="login" type="submit" name="btnlogin" value="Login"><i class="ti ti-login"></i>Login</button>
             </form>
             </div>
         </div>
@@ -57,7 +58,7 @@ if (isset($_POST['btnlogin'])) {
                 session_start();
                 $_SESSION['username'] = $_POST['txtusername'];
                 $_SESSION['usertype'] = $account['usertype'];
-                header("Location: index.php");
+                header("Location: main.php");
                 exit(); // Always call exit after header redirection
             } else {
                 $errorMessage = "Incorrect login details or account is inactive"; 

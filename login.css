@@ -83,5 +83,16 @@
     gap: 10px;
 }
 
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+i{
+    font-size: 25px;
+}
+
 
 

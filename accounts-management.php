@@ -15,11 +15,148 @@ if (isset($_SESSION['username'])) {
 
 ?>
 
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apt-Ease | Accounts Management</title>
+</head>
+<body>
+<header>
+    <h1>Apt-Ease</h1>
+    <div class="account-actions">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+            <a href="logout.php">Logout</a>
+             
+        </form>
+    </div>
+</header>
+
+<br> <a href="main.php">Home</a>
+<div class="search-container">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <center><a href="create-account.php">Create new Account</a><br></center>   
+        <br>
+        Search: <input type="text" name="txtSearch">
+        <input type="submit" name="btnSearch" value="Search">
+    </form>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="deleteContent"></div>
+    </div>
+</div>
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function showToast(message) {
+            var toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(function() {
+                toast.remove();
+            }, 3000);
+        }
+
+        $(document).ready(function() {
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            function openModal(username) {
+                modal.style.display = "block";
+                $.get("delete-account.php?username=" + username, function(data) {
+                    $("#deleteContent").html(data);
+                });
+            }
+
+            $(document).on("click", ".deleteLink", function(e) {
+                e.preventDefault();
+                openModal($(this).data("username"));
+            });
+        });
+    </script>
+</html>
+
+<?php
+function buildTable($result){
+    if(mysqli_num_rows($result) > 0) {
+        echo "<table>";
+        echo "<tr>";
+        echo "<th>Username</th> <th>User Type</th> <th>Status</th> <th>Date created</th> <th>Created by</th> <th>Action</th>";
+        echo "</tr>";
+        echo "<br>";
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<tr>";
+            echo "<td>". $row['username'] . "</td>";
+            echo "<td>". $row['usertype'] . "</td>";
+            echo "<td>". $row['status'] . "</td>";
+            echo "<td>". $row['datecreated'] . "</td>";
+            echo "<td>". $row['createdby'] . "</td>";
+
+            echo "<td>";
+            echo "<a href='update-account.php?username=" . $row['username'] . "'>Update</a>";
+            echo "<a href='#' class='deleteLink' data-username='" . $row['username'] . "'>Delete</a>";
+            echo "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No record/s found.";
+    }
+}
+
+require_once "config.php";
+if (isset($_POST['btnSearch'])) {
+    $sql = "SELECT * FROM tblaccounts WHERE username LIKE ? or usertype LIKE ? ORDER BY username";
+    if($stmt = mysqli_prepare($link, $sql) ) {
+        $searchvalue =  '%' . $_POST['txtSearch'] . '%';
+        mysqli_stmt_bind_param($stmt, "ss",$searchvalue, $searchvalue);
+        if(mysqli_stmt_execute($stmt)) {
+            $result = mysqli_stmt_get_result($stmt);
+            buildTable($result);
+        }
+    } else {
+        echo "Error on search";
+    }
+} else {
+    $sql = "SELECT * FROM tblaccounts ORDER BY username";
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        if (mysqli_stmt_execute($stmt)) {
+            $result = mysqli_stmt_get_result($stmt);
+            buildTable($result);
+        }
+    } else {
+        echo "Error on accounts load";
+    }
+}
+?>
+
+
+
+
+
+<!-- <html>
 <head>
     <title>Accounts Management</title>
     <style>
-        body {
+body {
     font-family: Arial, sans-serif;
     background-color: lightblue;
     color: black;
@@ -189,8 +326,7 @@ header h1 {
     border-radius: 5px;
     z-index: 9999;
 }
-
-    </style>
+</style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function showToast(message) {
@@ -260,58 +396,6 @@ header h1 {
     </div>
 </div>
 
-<?php
-function buildTable($result){
-    if(mysqli_num_rows($result) > 0) {
-        echo "<table>";
-        echo "<tr>";
-        echo "<th>Username</th> <th>User Type</th> <th>Status</th> <th>Date created</th> <th>Created by</th> <th>Action</th>";
-        echo "</tr>";
-        echo "<br>";
-        while ($row = mysqli_fetch_array($result)) {
-            echo "<tr>";
-            echo "<td>". $row['username'] . "</td>";
-            echo "<td>". $row['usertype'] . "</td>";
-            echo "<td>". $row['status'] . "</td>";
-            echo "<td>". $row['datecreated'] . "</td>";
-            echo "<td>". $row['createdby'] . "</td>";
 
-            echo "<td>";
-            echo "<a href='update-account.php?username=" . $row['username'] . "'>Update</a>";
-            echo "<a href='#' class='deleteLink' data-username='" . $row['username'] . "'>Delete</a>";
-            echo "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "No record/s found.";
-    }
-}
-
-require_once "config.php";
-if (isset($_POST['btnSearch'])) {
-    $sql = "SELECT * FROM tblaccounts WHERE username LIKE ? or usertype LIKE ? ORDER BY username";
-    if($stmt = mysqli_prepare($link, $sql) ) {
-        $searchvalue =  '%' . $_POST['txtSearch'] . '%';
-        mysqli_stmt_bind_param($stmt, "ss",$searchvalue, $searchvalue);
-        if(mysqli_stmt_execute($stmt)) {
-            $result = mysqli_stmt_get_result($stmt);
-            buildTable($result);
-        }
-    } else {
-        echo "Error on search";
-    }
-} else {
-    $sql = "SELECT * FROM tblaccounts ORDER BY username";
-    if ($stmt = mysqli_prepare($link, $sql)) {
-        if (mysqli_stmt_execute($stmt)) {
-            $result = mysqli_stmt_get_result($stmt);
-            buildTable($result);
-        }
-    } else {
-        echo "Error on accounts load";
-    }
-}
-?>
 </body>
-</html>
+</html> -->
