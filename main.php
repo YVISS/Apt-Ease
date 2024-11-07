@@ -23,23 +23,10 @@ session_start();
             <div class="main__logo">
                 <span class="APT">APT</span>
                 <span class="Ease">Ease</span>
-
             </div>
-            <div class="main__user">
-                <?php
-                //check if there is a session recorded
-                if (isset($_SESSION['username'])) {
-                    echo "<p class='welcome-name'>Welcome, " . $_SESSION['username'] . "</p>";
-                    echo "<p class='welcome-type'>Type: " . $_SESSION['usertype'] . "</p>";
-                    echo "<li><a class='logout' href='logout.php'>Logout</a></li>";
-                } else {
-                    //redirect the user to the login page
-                    header("location: login.php");
-                }
-                ?>
 
-            </div>
             <div class="main__sidebarlinks">
+                <span class="nav__type">Main</span>
                 <nav>
                     <ul>
                         <?php
@@ -71,6 +58,20 @@ session_start();
                     </ul>
 
                 </nav>
+            </div>
+            <div class="main__user">
+                <?php
+                //check if there is a session recorded
+                if (isset($_SESSION['username'])) {
+                    echo "<p class='welcome-name'>Welcome, " . $_SESSION['username'] . "</p>";
+                    echo "<p class='welcome-type'>Type: " . $_SESSION['usertype'] . "</p>";
+                    echo "<li><a class='logout' href='logout.php'>Logout</a></li>";
+                } else {
+                    //redirect the user to the login page
+                    header("location: login.php");
+                }
+                ?>
+
             </div>
 
         </div>

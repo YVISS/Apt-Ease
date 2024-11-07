@@ -21,6 +21,8 @@ if (isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="utils.css">
+    <link rel="stylesheet" href="modern-normalize.css">
     <title>Apt-Ease | Tenants Management</title>
 </head>
 <body>
@@ -39,7 +41,6 @@ if (isset($_SESSION['username'])) {
         <center><a href="create-account.php">Add new Tenant</a><br></center>   
         <br>
         Search: <input type="text" name="txtSearch">
-        <input type="submit" name="btnSearch" value="Search">
     </form>
 </div>
 

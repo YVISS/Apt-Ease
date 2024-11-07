@@ -3,15 +3,17 @@
     width: 100%;
     height: 100vh;
     display: grid;
-    grid-template-columns: 400px 1fr;
-    background-color: #f1f5f9;
+    grid-template-columns: 300px 1fr;
+    background-image: url('../Apt-Ease/src/dot_bg3.jpg');
+    background-size: contain;
+    background-repeat: repeat;
     
 }
 
 .main__sidebar{
     top: 0;
     position: fixed;
-    width: 400px;
+    width: 240px;
     background-color: #0f172a;
     height: 100vh;
     display: flex;
@@ -19,8 +21,11 @@
     flex-direction: column;
     align-items: center;
     grid-column: 1/2;
-    
-    border-radius: 0px 24px 24px 0px;
+    margin-left:30px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
 }
 
 .main__sidebar .main__logo{
@@ -36,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
+    font-size: 32px;
     font-weight: 700;
     padding: 0;
     margin: 0;
@@ -48,7 +53,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
+    font-size: 32px;
     font-weight: 400;
     padding: 0;
     letter-spacing: 10;
@@ -56,16 +61,14 @@
     
 }
 .main__user{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    display: block;
+    align-content: end;
+    justify-items: center;
     width: 100%;
     padding: 20px 20px 10px 20px;
-    margin-bottom: 100px;
-    margin-top: 100px;
     color:#f1f5f9;
-    
+    height: 100vh;
+    margin: 0;
 }
 
 .main__user .welcome-name{
@@ -73,11 +76,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: x-large;
+    font-size: small;
     font-weight: 400;
 }
 
 .main__user .logout{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     color: white;
 }
@@ -87,7 +94,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    font-size: large;
+    font-size: small;
     font-weight: 300;
 }
 
@@ -97,14 +104,30 @@
     color: rgb(248, 250, 252);
     font-weight: 600;
     align-items: center;
-    justify-content: start;
+    justify-content:stretch;
     font-size: 20px;
-    gap: 50px;
-    padding: 20px 70px 20px 70px;
-    border-radius: 20px;
+    gap: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
+
+.main__sidebarlinks{
+    height: 100vh;
+    margin-top: 200px;
+}
+
+.main__sidebarlinks .nav__type{
+    font-size: medium;
+    margin-left: 10px;
+    color: #94a3b8;
+}
+
+
 .main__sidebarlinks i{
+    display: flex;
     font-size: 40px;
+    align-items: center;
+    justify-content:center ;
 }
 
 

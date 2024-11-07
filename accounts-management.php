@@ -22,6 +22,8 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apt-Ease | Accounts Management</title>
+    <link rel="stylesheet" href="modern-normalize.css">
+    <link rel="stylesheet" href="utils.css">
 </head>
 <body>
 <header>
@@ -40,7 +42,7 @@ if (isset($_SESSION['username'])) {
         <center><a href="create-account.php">Create new Account</a><br></center>   
         <br>
         Search: <input type="text" name="txtSearch">
-        <input type="submit" name="btnSearch" value="Search">
+        <button name="btnSearch">Search</button>
     </form>
 </div>
 
