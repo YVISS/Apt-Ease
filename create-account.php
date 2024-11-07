@@ -104,7 +104,7 @@
                         if ($stmt = mysqli_prepare($link, $sql)) {
                             $status = "ACTIVE"; 
                             $datecreated = date("m/d/Y");
-                            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['txtusername'], $_POST['txtpassword'], $_POST['cmbtype'], $status, $_SESSION['username'], $datecreated);
+                            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['txtusername'], $_POST['txtpassword'], $_POST['cmbtype'], $status, $datecreated, $_SESSION['username']);
                             if (mysqli_stmt_execute($stmt)) {
                                 // Log the action
                                 $sql = "INSERT INTO tbllogs (datelogs,timelogs,action,module,ID,performedby) VALUES (?,?,?,?,?,?)";

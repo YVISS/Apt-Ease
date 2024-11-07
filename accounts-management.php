@@ -99,17 +99,20 @@ function buildTable($result){
     if(mysqli_num_rows($result) > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th>Username</th> <th>User Type</th> <th>Status</th> <th>Date created</th> <th>Created by</th> <th>Action</th>";
+        echo "<th>Username</th><th>Password</th><th>User Type</th><th>Status</th><th>Date created</th><th>Created by</th><th>Action</th>";
         echo "</tr>";
         echo "<br>";
-        while ($row = mysqli_fetch_array($result)) {
+        
+        // Fetch rows as an associative array
+        while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>". $row['username'] . "</td>";
+            echo "<td>". $row['password'] . "</td>";
             echo "<td>". $row['usertype'] . "</td>";
             echo "<td>". $row['status'] . "</td>";
-            echo "<td>". $row['datecreated'] . "</td>";
-            echo "<td>". $row['createdby'] . "</td>";
-
+            echo "<td>". $row['datecreated'] . "</td>";  // Correct datecreated
+            echo "<td>". $row['createdby'] . "</td>";     // Correct createdby
+            
             echo "<td>";
             echo "<a href='update-account.php?username=" . $row['username'] . "'>Update</a>";
             echo "<a href='#' class='deleteLink' data-username='" . $row['username'] . "'>Delete</a>";
@@ -121,7 +124,6 @@ function buildTable($result){
         echo "No record/s found.";
     }
 }
-
 require_once "config.php";
 if (isset($_POST['btnSearch'])) {
     $sql = "SELECT * FROM tblaccounts WHERE username LIKE ? or usertype LIKE ? ORDER BY username";
