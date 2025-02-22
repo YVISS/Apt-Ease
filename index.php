@@ -14,18 +14,23 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="index.php">Home</a>
-                        <a href="about.php">About</a>
-                        <a href="login.php">Login</a>
+                        <div class="nav__links">
+                            <a href="index.php">Home</a>
+                            <a href="about.php">About</a>
+                        </div>
+                        <button type="submit">Login</button>
                     </li>
                 </ul>
             </nav>
         </header>
         <div class="main-content">
-            <h1>Effortless Living</h1>
-            <h3>SEAMLESS MANAGEMENT</h3>
+            <div class="main__info">
+                <h1>Effortless Living,</h1>
+                <h3>SEAMLESS MANAGEMENT</h3>
+            </div>
+            <img src="src/aptease-index.png" alt="">
         </div>
-        <footer></footer>
+        <footer>text</footer>
     </div>
 </body>
 </html>

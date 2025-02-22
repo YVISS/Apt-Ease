@@ -46,7 +46,14 @@ body {
 Text-level semantics
 ====================
 */
-
+nav ul li a{
+	list-style-type: none;
+	text-decoration: none;
+	color: black;
+}
+nav ul li{
+	list-style-type:none;
+}
 /**
 Add the correct font weight in Chrome and Safari.
 */
