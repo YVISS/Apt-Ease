@@ -15,6 +15,7 @@
         </header>
         <div class="main-content">
             <div class="card">
+                <div class="card__content">
                 <h1>Login</h1>
                 <form action="login.php" method="post">
                     <label for="">Account Name</label>
@@ -23,6 +24,7 @@
                     <input type="password" id="txtpassword" name="txtpassword" placeholder="Password" required>
                     <button type="submit">Login</button>
                 </form>
+                </div>
             </div>
         </div>
         <footer></footer>
