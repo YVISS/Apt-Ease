@@ -12,6 +12,7 @@
  --domino: #947c62;
  --storm-dust: #6c6c69;
  --sandal: #b49474;
+ --light-text: #FFFFFF;
  
  
  
@@ -43,7 +44,7 @@ html, body {
 }
 body {
     position: relative;
-    background-image: url('src/apt-ease-bg.png');
+    background-image: url('../src/apt-ease-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -165,5 +166,7 @@ header img{
 }
 
 footer{
-    border-bottom: 1px solid rgba(84, 83, 76, 0.2);
+    background-color: var(--fuscous-gray);
+    color: var(--light-text);
+    border-top: 1px solid rgba(84, 83, 76, 0.1);
 }
