@@ -32,12 +32,12 @@
 </body>
 </html>
 <?php
+require_once ('config.php');
 session_start();
+$msg = "";
 
 if (isset($_POST['btnlogin'])) {
-    require_once ('config.php');
 
-    $msg = "";
     $sql = "SELECT * FROM tblaccounts WHERE username = ? AND password = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
@@ -53,11 +53,11 @@ if (isset($_POST['btnlogin'])) {
                 header("location: index.php");
             } 
             else{
-                $msg = "Incorrect Login Credentials";
+                $msg .= "Incorrect Login Credentials";
             }
         } 
         else{
-            $msg = "ERROR on the login statement";
+            $msg .= "ERROR on the login statement";
         }
     }
 }
