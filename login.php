@@ -31,3 +31,34 @@
     </div>
 </body>
 </html>
+<?php
+session_start();
+
+if (isset($_POST['btnlogin'])) {
+    require_once ('config.php');
+
+    $msg = "";
+    $sql = "SELECT * FROM tblaccounts WHERE username = ? AND password = ?";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        mysqli_stmt_bind_param($stmt, "ss", $_POST['txtusername'], $_POST['txtpassword']);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = mysqli_stmt_get_result($stmt);
+            
+            if (mysqli_num_rows($result) > 0) {
+                $account = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                $_SESSION['username'] = $_POST['txtusername'];
+                $_SESSION['usertype'] = $account['usertype'];
+                header("location: index.php");
+            } 
+            else{
+                $msg = "Incorrect Login Credentials";
+            }
+        } 
+        else{
+            $msg = "ERROR on the login statement";
+        }
+    }
+}
+?>
