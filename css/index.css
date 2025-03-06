@@ -123,10 +123,5 @@ nav ul li .nav__links{
 }
 
 footer{
-    background-color: var(--fuscous-gray);
-    color: var(--light-text);
-    border-top: 1px solid rgba(84, 83, 76, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
 }

@@ -112,6 +112,17 @@ header img{
     color: var(--fuscous-gray);
     font-size: 16px;
 }
+.card input[type="checkbox"]{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+.card input[type="password"]::after{
+    content: '';
+
+}
 
 .card .card__content button{
     display: flex;
@@ -135,7 +146,29 @@ header img{
     background: var(--fuscous-gray);
 }
 
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 20vw;
+    padding-right: 40px; /* Space for the icon */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
 footer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--fuscous-gray);
     color: var(--light-text);
     border-top: 1px solid rgba(84, 83, 76, 0.1);

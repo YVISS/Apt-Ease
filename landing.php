@@ -18,7 +18,7 @@
                             <a href="index.php">Home</a>
                             <a href="about.php">About</a>
                         </div>
-                        <button type="submit">Login</button>
+                        <button type="submit"><a href="login.php">Login</a></button>
                     </li>
                 </ul>
             </nav>
@@ -30,7 +30,7 @@
             </div>
             <img src="src/aptease-index.png" alt="">
         </div>
-        <footer>text</footer>
+        <footer>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat, ipsam.</footer>
     </div>
 </body>
 </html>
