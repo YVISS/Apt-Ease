@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 07, 2025 at 03:44 PM
+-- Generation Time: Mar 07, 2025 at 03:52 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -42,6 +42,19 @@ CREATE TABLE `tblaccounts` (
 INSERT INTO `tblaccounts` (`username`, `password`, `usertype`, `createdby`, `datecreated`) VALUES
 ('tryadmin', 'tryadmin', 'ADMIN', 'ADMIN', '22/02/25');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbltenants`
+--
+
+CREATE TABLE `tbltenants` (
+  `apartmentID` varchar(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `downpayment` varchar(15) NOT NULL,
+  `contactNo` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -51,6 +64,12 @@ INSERT INTO `tblaccounts` (`username`, `password`, `usertype`, `createdby`, `dat
 --
 ALTER TABLE `tblaccounts`
   ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `tbltenants`
+--
+ALTER TABLE `tbltenants`
+  ADD PRIMARY KEY (`apartmentID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
