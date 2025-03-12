@@ -17,9 +17,16 @@ if (isset($_POST['btnlogin'])) {
 
             if (mysqli_num_rows($result) > 0) {
                 $account = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                    $_SESSION['username'] = $_POST['txtusername'];
+                    $_SESSION['username'] = $account['username'];
                     $_SESSION['usertype'] = $account['usertype'];
-                    header("location: main.php");
+
+                    if ($_SESSION['usertype'] == 'TENANT') {
+                        header("Location: main-tenant.php");
+                    } elseif ($_SESSION['usertype'] == 'LANDLORD') {
+                        header("Location: main-admin.php");
+                    } else {
+                        $msg .= "ERROR: Usertype not available";
+                    }
                     exit;
                 }else{
                     $msg .= "ERROR: on Page redirection";
