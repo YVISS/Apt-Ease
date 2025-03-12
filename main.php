@@ -51,8 +51,6 @@ session_start();
                                 echo "<li>Unknown usertype.</li>";
                                 break;
                         }
-
-
                         ?>
                     </ul>
 
