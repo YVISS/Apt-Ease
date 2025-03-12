@@ -35,7 +35,7 @@
                 echo "<table class='tblmanage'>";
                 //create the header
                 echo "<tr class='headers'>";
-                echo "<th>Username</th><th>Usertype</th><th>Status</th><th>Created by</th><th>Date Created</th><th>Action</th>";
+                echo "<th>Username</th><th>Password</th><th>Usertype</th><th>Created by</th><th>Date Created</th><th>Action</th>";
                 echo "</tr>";
                 echo "<br>";
                 //display the data of the tablecx

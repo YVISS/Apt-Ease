@@ -17,14 +17,10 @@ if (isset($_POST['btnlogin'])) {
 
             if (mysqli_num_rows($result) > 0) {
                 $account = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                if($_SESSION['usertype'] == 'LANDLORD'){
-                    $_SESSION['username'] = $account['username'];
-                    $_SESSION['usertype'] = $_POST['usertype'];
-                    header("location: main-admin.php");
-                }elseif($_SESSION['usertype'] == 'TENANT'){
-                    $_SESSION['username'] = $account['username'];
-                    $_SESSION['usertype'] = $_POST['usertype'];
-                    header('location: main-tenant.php');
+                    $_SESSION['username'] = $_POST['txtusername'];
+                    $_SESSION['usertype'] = $account['usertype'];
+                    header("location: main.php");
+                    exit;
                 }else{
                     $msg .= "ERROR: on Page redirection";
                 }
@@ -35,7 +31,6 @@ if (isset($_POST['btnlogin'])) {
             $msg .= "ERROR on the login statement";
         }
     }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
