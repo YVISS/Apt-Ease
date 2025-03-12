@@ -9,5 +9,6 @@
 </head>
 <body>
     <h1>TENANT PAGE TESTING MUNA</h1>
+    <a href="logout.php">logout</a>
 </body>
 </html>

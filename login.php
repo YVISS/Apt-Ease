@@ -20,14 +20,13 @@ if (isset($_POST['btnlogin'])) {
                     $_SESSION['username'] = $account['username'];
                     $_SESSION['usertype'] = $account['usertype'];
 
-                    if ($_SESSION['usertype'] == 'TENANT') {
-                        header("Location: main-tenant.php");
-                    } elseif ($_SESSION['usertype'] == 'LANDLORD') {
-                        header("Location: main-admin.php");
+                    if ($_SESSION['usertype'] == 'LANDLORD') {
+                        header("location: main-admin.php");
+                    } if ($_SESSION['usertype'] == 'TENANT') {
+                        header('location: main-tenant.php');
                     } else {
                         $msg .= "ERROR: Usertype not available";
                     }
-                    exit;
                 }else{
                     $msg .= "ERROR: on Page redirection";
                 }
