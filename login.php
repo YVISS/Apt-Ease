@@ -17,7 +17,7 @@ if (isset($_POST['btnlogin'])) {
 
             if (mysqli_num_rows($result) > 0) {
                 $account = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                if($_SESSION['usertype']  == 'ADMIN' || $_SESSION['usertype'] == 'LANDLORD'){
+                if($_SESSION['usertype'] == 'LANDLORD'){
                     $_SESSION['username'] = $account['username'];
                     $_SESSION['usertype'] = $_POST['usertype'];
                     header("location: main-admin.php");
