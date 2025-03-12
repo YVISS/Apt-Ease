@@ -30,7 +30,12 @@
             </div>
             <img src="src/aptease-index.png" alt="">
         </div>
-        <footer>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat, ipsam.</footer>
+        <footer>
+            <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+        </footer>
+        <script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
     </div>
 </body>
 </html>

@@ -11,7 +11,7 @@ session_start();
     <link rel="stylesheet" href="css/defaults/main-defaults.css">
     <link rel="stylesheet" href="css/modern-normalize.css">
     <link rel="stylesheet" href="css/main-admin.css">
-    <title>Main - <?php echo $_SESSION['username'];?></title>
+    <title>Main Admin Page - Apt Ease</title>
 </head>
 <body>
     <div class="wrapper">
