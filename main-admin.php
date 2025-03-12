@@ -28,7 +28,7 @@ session_start();
 
                     </div>
                     <div class="lower__nav">
-                        <li><a href="">Logout</a></li>
+                        <li><a href="logout.php">Logout</a></li>
                     </div>
                     
                 </ul>

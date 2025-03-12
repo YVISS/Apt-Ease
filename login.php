@@ -16,17 +16,17 @@ if (isset($_POST['btnlogin'])) {
             $result = mysqli_stmt_get_result($stmt);
 
             if (mysqli_num_rows($result) > 0) {
-                $account = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                if($_SESSION['usertype'] == 'LANDLORD'){
-                    $_SESSION['username'] = $account['username'];
-                    $_SESSION['usertype'] = $_POST['usertype'];
+                $account = mysqli_fetch_array($result, MYSQLI_ASSOC);//fetches the user data
+
+                $_SESSION['username'] = $account['username'];
+                $_SESSION['usertype'] = $account['usertype'];
+                //validate usertype
+                if($_SESSION['usertype'] == 'ADMIN'){
                     header("location: main-admin.php");
-                }elseif($_SESSION['usertype'] == 'TENANT'){
-                    $_SESSION['username'] = $account['username'];
-                    $_SESSION['usertype'] = $_POST['usertype'];
+                }else if($_SESSION['usertype'] == 'TENANT'){
                     header('location: main-tenant.php');
                 }else{
-                    $msg .= "ERROR: on Page redirection";
+                    $msg .= "ERROR: Usertype not available";
                 }
             } else {
                 $msg .= "Incorrect Login Credentials";
