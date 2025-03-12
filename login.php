@@ -52,10 +52,11 @@ if (isset($_POST['btnlogin'])) {
                     <?php echo $msg; ?>
                     <form action="login.php" method="post">
                         <label for="txtusername">Account Name</label>
-                        <input id="txtusername" type="text" name="txtusername" placeholder="Username" required>
+                        <input id="txtusername" type="text" name="txtusername" requried placeholder="Username" autofocus>
                         <label for="txtpassword">Password</label>
                         <input type="password" id="password" name="txtpassword" placeholder="example123..." required>
-                       
+                        <input type="checkbox" id="showPassword">
+                        <label for="showPassword">Show Password</label>
                         <button type="submit" id="btnlogin" name="btnlogin">Login</button>
                     </form>
                 </div>
