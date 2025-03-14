@@ -5,3 +5,43 @@
     padding: 0;
     margin: 0;
 }
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image:linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url(../src/apt-ease-bg.png);
+    background-attachment: fixed;
+
+}
+/* wrapper */
+
+.wrapper{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    
+}
+
+/* header */
+
+/* sidebar */
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: var(--light-text);
+}
+
+.sidebar .image-text img{
+    width: 100px;
+    height: auto;
+}
+/* main-content */
+
+.main-content{
+
+}
