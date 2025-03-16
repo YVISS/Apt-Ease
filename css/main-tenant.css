@@ -1,0 +1,208 @@
+@import url('main-admin.css');
+@import url('colors.css');
+
+/*defaults*/
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image:linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url(../src/apt-ease-bg.png);
+    background-attachment: fixed;
+    display: flex;
+}
+/* wrapper */
+.wrapper{
+    width: calc(100% - 250px); /* Adjust width to account for sidebar */
+    margin-left: 250px; /* Align next to sidebar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wrapper-container{
+    display: grid;
+    grid-template-rows: 100px 1fr auto;
+    margin: 0 30px 0 30px;
+
+}
+
+/* header */
+
+/* sidebar */
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: var(--light-text);
+    padding: 10px 14px;
+    transition: 0.5s ease-in-out;
+}
+
+.sidebar .image-text img{
+    width: 100px;
+    height: auto;
+}
+
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sidebar header{
+    position: relative;
+}
+
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar .image{
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+}
+
+header .image-text .header-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text .name{
+    font-weight: 600;
+}
+
+.sidebar header .toggle{
+    position: absolute;
+    top: 20px;
+    right: 0.92vw;
+    transform: translateY(-50%);
+    height: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 40px;
+    color: rgba(0, 0, 0, 1);
+    transition: 0.4s ease-in-out;
+}
+.sidebar header .toggle:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.10);
+}
+
+.sidebar header .toggle svg {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+}
+
+.sidebar li{
+    margin-top: 10px;
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.sidebar .logout{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.sidebar .menu li a{
+    width: 100%;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    transition: 0.4s ease-in-out;
+}
+.sidebar .logout li a{
+    width: 100%;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.4s ease-in-out;
+}
+
+.sidebar li .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 40px;
+}
+
+.sidebar li  a:hover{
+    background: var(--leather);
+}
+
+.sidebar li .icon,
+.sidebar li .text {
+    transition: 0.4s ease-in-out;
+    color: var(--darker-gray);
+}
+
+.sidebar li  a:hover .icon,
+.sidebar li  a:hover .text{
+    color: var(--light-text);
+}
+
+
+.sidebar .logout li  a:hover .icon,
+.sidebar .logout li a:hover .text{
+    color: var(--light-text);
+}
+
+.sidebar .logout li a:hover{
+    background: red;
+}
+
+.sidebar .menu-bar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: calc(100% - 50vh);
+}
+
+.sidebar.close{
+    width: 6vw;
+}
+
+.sidebar.close .text{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+.sidebar.close .image-text img{
+    width: 70px;
+}
+/* main-content */
+
+.main-content{
+
+}
