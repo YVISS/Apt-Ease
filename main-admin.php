@@ -18,19 +18,12 @@ include 'errors.php';
 <body>
     <nav class="sidebar">
         <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="src/apt-ease-logo.png" alt="">
-                </span>
-            </div>
             <i class="toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left-pipe">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M7 6v12" />
                     <path d="M18 6l-6 6l6 6" />
                 </svg>
-                </svg>
-
             </i>
         </header>
         <div class="menu-bar">
@@ -81,7 +74,6 @@ include 'errors.php';
                         </a>
                     </li>
                 </ul>
-
             </div>
             <div class="logout">
                 <li class="nav-link">
@@ -95,50 +87,52 @@ include 'errors.php';
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-                </ul>
             </div>
+        </div>
     </nav>
     <div class="wrapper">
+        <div class="wrapper-container">
         <header>
+            <div class="header_logo">
+                <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
+            </div>
         </header>
-
         <div class="main-content">
             <div class="page-title">
                 <h1>Main Admin</h1>
             </div>
-
-
         </div>
         <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
-    </div>
+        </div>
+        </div>
 
     <script>
         const body = document.querySelector("body"),
             sidebar = body.querySelector(".sidebar"),
             toggle = sidebar.querySelector(".toggle");
 
-       
-toggle.addEventListener("click", () => {
-    // Toggle class and check if it's added
-    const isClosed = sidebar.classList.toggle("close");
+        toggle.addEventListener("click", () => {
+            // Toggle class and check if it's added
+            const isClosed = sidebar.classList.toggle("close");
 
-    // Change the inner HTML based on the class state
-    if (isClosed) {
-        toggle.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right-pipe">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M6 6l6 6l-6 6" />
-                <path d="M17 5v13" />
-            </svg>`;
-    } else {
-        toggle.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left-pipe">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M7 6v12" />
-                <path d="M18 6l-6 6l6 6" />
-            </svg>`;
-    }
-});
+            // Change the inner HTML based on the class state
+            if (isClosed) {
+                toggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right-pipe">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M6 6l6 6l-6 6" />
+                        <path d="M17 5v13" />
+                    </svg>`;
+
+            } else {
+                toggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left-pipe">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 6v12" />
+                        <path d="M18 6l-6 6l6 6" />
+                    </svg>`;
+            }
+        });
     </script>
 </body>
 

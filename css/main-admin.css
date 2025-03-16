@@ -13,14 +13,22 @@ body{
     background-repeat: no-repeat;
     background-image:linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url(../src/apt-ease-bg.png);
     background-attachment: fixed;
-
+    display: flex;
 }
 /* wrapper */
-
 .wrapper{
+    width: calc(100% - 250px); /* Adjust width to account for sidebar */
+    margin-left: 250px; /* Align next to sidebar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wrapper-container{
     display: grid;
-    grid-template-rows: auto auto auto;
-    
+    grid-template-rows: 100px 1fr auto;
+    margin: 0 30px 0 30px;
+
 }
 
 /* header */
@@ -76,17 +84,27 @@ header .image-text .header-text{
 
 .sidebar header .toggle{
     position: absolute;
-    top: 50%;
-    right: -25px;
+    top: 20px;
+    right: 0.92vw;
     transform: translateY(-50%);
-    height: 30px;
-    width: 30px;
-    background-color: var(--muesli);
+    height: auto;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    font-size: 22px;
+    border-radius: 6px;
+    font-size: 40px;
+    color: rgba(0, 0, 0, 1);
+    transition: 0.4s ease-in-out;
+}
+.sidebar header .toggle:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.10);
+}
+
+.sidebar header .toggle svg {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
 }
 
 .sidebar li{
@@ -130,7 +148,7 @@ header .image-text .header-text{
     align-items: center;
     justify-content: center;
     min-width: 60px;
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .sidebar li  a:hover{
@@ -162,8 +180,8 @@ header .image-text .header-text{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: calc(100% - 50px);
+    justify-content: space-evenly;
+    height: calc(100% - 50vh);
 }
 
 .sidebar.close{
