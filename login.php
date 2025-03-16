@@ -35,6 +35,7 @@ if (isset($_POST['btnlogin'])) {
             $msg .= "ERROR on the login statement";
         }
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
