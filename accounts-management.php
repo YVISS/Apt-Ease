@@ -5,6 +5,7 @@
     </head>
 <body>
     <p>Accounts Management</p>
+    <a href='logout.php'>Logout</a>
     <?php
         session_start();
         $usertype = $_SESSION['usertype'];
@@ -14,7 +15,6 @@
                 echo "<li><a class='links' href='tenants-management.php'><i class='ti ti-door'></i>Tenants</a></li>";
                 echo "<li><a class='links' href='payments-management.php'><i class='ti ti-receipt'></i>Payments</a></li>";
                 echo "<li><a class='links' href='maintenance-management.php'><i class='ti ti-book'></i>Maintenance Records</a></li>";
-                echo "<li><a class='links' href='logs.php'><i class='ti ti-logs'></i>Logs</a></li>";
                 break;
             case 'TENANT':
                 echo "<li><a class='links' href='maintenance-management.php'><i class='ti ti-tool'></i>Maintenance Submission</a></li>";
@@ -25,7 +25,11 @@
                 break;
         }
     ?>
-    <a href='logout.php'>Logout</a>
+    <form action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method = "POST">
+        <a href ="create-account.php">Create new Account</a>
+		<br>Search: <input type="text" name="txtsearch">
+		<input type="submit" name="btnsearch" value="Search">
+	</form>	
     <?php
     function buildTable($result)
         {
@@ -47,8 +51,17 @@
                     echo "<td class = 'items'>" . $row['createdby'] . "</td>";
                     echo "<td class = 'items'>" . $row['datecreated'] . "</td>";
                     echo "<td = 'action'>";
-                    echo "<a href='update-account.php?username=" . $row['username'] . "'>";
-                    echo "<svg class = 'delete' id='delete-icon' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='icon icon-tabler icons-tabler-outline icon-tabler-trash'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M4 7l16 0' /><path d='M10 11l0 6' /><path d='M14 11l0 6' /><path d='M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12' /><path d='M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3' /></svg>";
+                    echo "<a href='update-account.php?username=" . $row['username'] . "'>Update</a>";
+                    echo "<a href='delete-account.php class='delete'></a>";
+                    echo "<a href='delete-account.php?username=" . $row['username'] . "' class='delete'>
+                    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                        <path stroke='none' d='M0 0h24v24H0z' fill='none'/>
+                        <path d='M4 7l16 0' />
+                        <path d='M10 11l0 6' />
+                        <path d='M14 11l0 6' />
+                        <path d='M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12' />
+                        <path d='M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3' />
+                    </svg></a>";
                     echo "</td>";
                     echo "</tr>";
                 }

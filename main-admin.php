@@ -37,7 +37,7 @@ include 'errors.php';
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="accounts-management.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
@@ -49,7 +49,7 @@ include 'errors.php';
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="tenants-management.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tent">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M11 14l4 6h6l-9 -16l-9 16h6l4 -6" />
@@ -58,7 +58,7 @@ include 'errors.php';
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
+                        <a href="payments-management.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
@@ -71,7 +71,7 @@ include 'errors.php';
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="maintenance-management.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
