@@ -18,10 +18,9 @@ include 'errors.php';
 <<<<<<< HEAD
                     </div>
                     <div class="lower__nav">
-                        <li><a href="logout.php">Logout</a></li>
+                        <a href="logout.php"></a>
                     </div>
                     
-=======
 <body>
     <nav class="sidebar">
         <header>
