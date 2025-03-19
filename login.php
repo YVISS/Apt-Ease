@@ -19,6 +19,12 @@ if (isset($_POST['btnlogin'])) {
                 $_SESSION['username'] = $account['username'];
                 $_SESSION['usertype'] = $_POST['usertype'];
                 header("location: main.php");
+                // if($_SESSION['usertype'] == 'ADMIN' || $_SESSION['usertype'] == 'LANDLORD'){
+                //     header("location: main-admin.php");
+                // }
+                // if($_SESSION['usertype'] == 'TENANT'){
+                //     header("location: main-tenant.php");
+                // }
             } else {
                 $msg .= "Incorrect Login Credentials";
             }
