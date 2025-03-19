@@ -14,7 +14,7 @@ html, body {
 }
 body {
     position: relative;
-    background-image: url('../src/apt-ease-bg.png');
+    background: linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.30)), url('../src/apt-ease-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -55,7 +55,7 @@ header img{
 .card{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-direction: column;
     width: 600px;
     height: 500px;
@@ -103,7 +103,7 @@ header img{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60%;
+    width: 23vw;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
@@ -112,23 +112,33 @@ header img{
     color: var(--fuscous-gray);
     font-size: 16px;
 }
-.card input[type="checkbox"]{
+
+.card__content .showPassword{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
 }
-.card input[type="password"]::after{
-    content: '';
 
+.showPassword input[type="checkbox"]{
+    height: 40px;
+    width: auto;
+    border: none;
+}
+
+
+.card-content .toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .card .card__content button{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60%;
+    width: 15vw;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
@@ -159,6 +169,7 @@ header img{
 
 .toggle-password {
     position: absolute;
+    top: 20px;
     right: 10px;
     cursor: pointer;
     user-select: none;

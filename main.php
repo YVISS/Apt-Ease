@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -31,17 +31,12 @@
                         <?php
                         $usertype = $_SESSION['usertype'];
                         switch ($_SESSION['usertype']) {
-                            case 'ADMINISTRATOR':
-                                echo "<li><a class='links' href='accounts-management.php'><i class='ti ti-address-book'></i>Accounts</a></li>";
-                                echo "<li><a class='links' href='tenants-management.php'><i class='ti ti-door'></i>Tenants</a></li>";
-                                echo "<li><a class='links' href='payments-management.php'><i class='ti ti-receipt'></i>Payments</a></li>";
-                                echo "<li><a class='links' href='maintenance-management.php'><i class='ti ti-book'></i>Maintenance Records</a></li>";
-                                break;
                             case 'LANDLORD':
                                 echo "<li><a class='links' href='accounts-management.php'><i class='ti ti-address-book'></i>Accounts</a></li>";
                                 echo "<li><a class='links' href='tenants-management.php'><i class='ti ti-door'></i>Tenants</a></li>";
                                 echo "<li><a class='links' href='payments-management.php'><i class='ti ti-receipt'></i>Payments</a></li>";
                                 echo "<li><a class='links' href='maintenance-management.php'><i class='ti ti-book'></i>Maintenance Records</a></li>";
+                                echo "<li><a class='links' href='logs.php'><i class='ti ti-logs'></i>Logs</a></li>";
                                 break;
                             case 'TENANT':
                                 echo "<li><a class='links' href='maintenance-management.php'><i class='ti ti-tool'></i>Maintenance Submission</a></li>";
