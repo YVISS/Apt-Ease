@@ -14,7 +14,7 @@ if (isset($_POST['btnsubmit'])) {
                 //insert account
                 $sql = "INSERT INTO tblaccounts (username, password, usertype, createdby, datecreated) VALUES (?,?,?,?,?)";
                 if ($stmt = mysqli_prepare($link, $sql)) {
-                    $datecreated = date("d/m/Y");
+                    $datecreated = date("m/d/Y");
                     mysqli_stmt_bind_param($stmt, "sssss", $_POST['txtusername'], $_POST['txtpassword'], $_POST['cmbtype'], $_SESSION['username'], $datecreated);
                     if (mysqli_stmt_execute($stmt)) {
                         $sql = "INSERT INTO tbllogs (datelog, timelog, action, module, ID, performedby) VALUES (?, ?, ?, ?, ?, ?)";
