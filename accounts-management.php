@@ -5,31 +5,27 @@
     </head>
 <body>
     <p>Accounts Management</p>
-    <a href='logout.php'>Logout</a>
+    
     <?php
         session_start();
+        $username = $_SESSION['username'];
         $usertype = $_SESSION['usertype'];
-        switch ($_SESSION['usertype']) {
-            case 'LANDLORD':
-                echo "<li><a class='links' href='accounts-management.php'><i class='ti ti-address-book'></i>Accounts</a></li>";
-                echo "<li><a class='links' href='tenants-management.php'><i class='ti ti-door'></i>Tenants</a></li>";
-                echo "<li><a class='links' href='payments-management.php'><i class='ti ti-receipt'></i>Payments</a></li>";
-                echo "<li><a class='links' href='maintenance-management.php'><i class='ti ti-book'></i>Maintenance Records</a></li>";
-                break;
-            case 'TENANT':
-                echo "<li><a class='links' href='maintenance-management.php'><i class='ti ti-tool'></i>Maintenance Submission</a></li>";
-                break;
-            default:
-            // Handle unknown usertypess
-                echo "<li>Unknown usertype.</li>";
-                break;
-        }
     ?>
+    <p>Welcome, <?php echo htmlspecialchars($username); ?>.</p>
+    <p>Usertype: <?php echo htmlspecialchars($usertype); ?></p>
+
+    <a href='logout.php'>Logout</a><br><br>
+    <a href = "accounts-management.php">Accounts</a><br>
+    <a href = "tenants-management.php">Tenants</a><br>
+    <a href = "payments-management.php">Payments</a><br>
+    <a href = "maintenance-management.php">Maintenance</a><br><br>
+
     <form action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method = "POST">
-        <a href ="create-account.php">Create new Account</a>
+        <a href ="create-account.php">Create new Account</a><br><br>
 		<br>Search: <input type="text" name="txtsearch">
 		<input type="submit" name="btnsearch" value="Search">
 	</form>	
+    
     <?php
     function buildTable($result)
         {
@@ -52,7 +48,6 @@
                     echo "<td class = 'items'>" . $row['datecreated'] . "</td>";
                     echo "<td = 'action'>";
                     echo "<a href='update-account.php?username=" . $row['username'] . "'>Update</a>";
-                    echo "<a href='delete-account.php class='delete'></a>";
                     echo "<a href='delete-account.php?username=" . $row['username'] . "' class='delete'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
                         <path stroke='none' d='M0 0h24v24H0z' fill='none'/>
