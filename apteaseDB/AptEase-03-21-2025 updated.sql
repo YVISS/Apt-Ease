@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2025 at 05:17 PM
+-- Generation Time: Mar 21, 2025 at 01:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -104,9 +104,22 @@ INSERT INTO `tblmaintenance` (`ticketID`, `username`, `description`, `dateSubmit
 --
 
 CREATE TABLE `tblpayments` (
+  `username` varchar(50) NOT NULL,
   `amount` varchar(30) NOT NULL,
-  `date` varchar(20) NOT NULL
+  `paymentMethod` varchar(20) NOT NULL,
+  `date` varchar(20) NOT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tblpayments`
+--
+
+INSERT INTO `tblpayments` (`username`, `amount`, `paymentMethod`, `date`, `status`) VALUES
+('AptEase001', '1234567', 'GCash', '2025-03-21 20:47:44', 'Pending Confirmation'),
+('AptEase001', '1234', 'Bank', '2025-03-21 20:47:55', 'Confirmed'),
+('AptEase002', '123', 'GCash', '2025-03-21 20:48:04', 'Pending Confirmation'),
+('AptEase002', '12345567', 'Bank', '2025-03-21 20:48:09', 'Confirmed');
 
 -- --------------------------------------------------------
 
