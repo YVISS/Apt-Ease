@@ -1,8 +1,7 @@
 <?php
 require_once 'config.php';
-include("session-checker.php");
+include 'sessionchecker.php';
 
-session_start(); // Ensure the session is started
 
 if (isset($_POST['btnsubmit'])) {
     $sql = "UPDATE tblaccounts SET password =?, usertype =? WHERE username = ?";
@@ -56,7 +55,7 @@ if (isset($_POST['btnsubmit'])) {
         <p>Update Account</p>
         <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="POST">
             Username: <?php echo htmlspecialchars($account['username']); ?> <br>
-            Password: <input type="password" id="passwordInput" name="txtpassword" placeholder="Password" required><br>
+            Password: <input type="password" id="passwordInput" name="txtpassword" placeholder="Password" value="<?php echo $account['password'];?>" required><br>
             <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password<br><br>
             Current User type: <?php echo htmlspecialchars($account['usertype']); ?><br><br>
             Change User type to: <select name="cmbtype" id="cmbtype" required>

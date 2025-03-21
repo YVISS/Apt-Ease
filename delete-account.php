@@ -1,8 +1,7 @@
 <?php
 require_once "config.php";
-include "session-checker.php";
+include "sessionchecker.php";
 
-session_start(); // Ensure the session is started
 
 if (!isset($_SESSION['username'])) {
     echo "<font color='red'>Error: User not logged in.</font>";

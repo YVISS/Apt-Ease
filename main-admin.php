@@ -15,12 +15,11 @@ include 'errors.php';
     <title>Main Admin Page - Apt Ease</title>
 </head>
 
-<<<<<<< HEAD
-                    </div>
-                    <div class="lower__nav">
-                        <a href="logout.php"></a>
-                    </div>
-                    
+</div>
+<div class="lower__nav">
+    <a href="logout.php"></a>
+</div>
+
 <body>
     <nav class="sidebar">
         <header>
@@ -79,7 +78,6 @@ include 'errors.php';
                             <span class="text nav-text">Maintenance</span>
                         </a>
                     </li>
->>>>>>> dev_eley
                 </ul>
             </div>
             <div class="logout">
@@ -99,19 +97,19 @@ include 'errors.php';
     </nav>
     <div class="wrapper">
         <div class="wrapper-container">
-        <header>
-            <div class="header_logo">
-                <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
+            <header>
+                <div class="header_logo">
+                    <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
+                </div>
+            </header>
+            <div class="main-content">
+                <div class="page-title">
+                    <h1>Main Admin</h1>
+                </div>
             </div>
-        </header>
-        <div class="main-content">
-            <div class="page-title">
-                <h1>Main Admin</h1>
-            </div>
+            <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
         </div>
-        <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
-        </div>
-        </div>
+    </div>
 
     <script>
         const body = document.querySelector("body"),
