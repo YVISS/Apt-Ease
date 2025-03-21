@@ -1,7 +1,6 @@
 <?php
 require_once 'config.php';
-include 'sessionchecker.php';
-
+include "sessionchecker.php";
 
 if (isset($_POST['btnsubmit'])) {
     $sql = "UPDATE tblaccounts SET password =?, usertype =? WHERE username = ?";
