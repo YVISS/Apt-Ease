@@ -23,7 +23,7 @@
 
     <a href='logout.php'>Logout</a><br><br>
     <a href = "accounts-management.php">Accounts</a><br>
-    <a href = "tenants-management.php">Tenants</a><br>
+    <a href = "add-management.php">Tenants</a><br>
     <a href = "payments-management.php">Payments</a><br>
     <a href = "maintenance-management.php">Maintenance</a><br><br>
 

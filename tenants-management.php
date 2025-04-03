@@ -17,12 +17,12 @@
     <a href='logout.php'>Logout</a><br><br>
 
     <a href = "accounts-management.php">Accounts</a><br>
-    <a href = "tenants-management.php">Tenants</a><br>
+    <a href = "add-management.php">Tenants</a><br>
     <a href = "payments-management.php">Payments</a><br>
     <a href = "maintenance-management.php">Maintenance</a><br><br>
 
     <form action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method = "POST">
-        <a href ="create-tenant.php">Add new tenant</a><br><br>
+        <a href ="add-tenant.php">Add new tenant</a><br><br>
 
 		<br>Search: <input type="text" name="txtsearch">
 		<input type="submit" name="btnsearch" value="Search">

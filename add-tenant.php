@@ -26,7 +26,7 @@ if (isset($_POST['btnsubmit'])) {
                         if ($stmt = mysqli_prepare($link, $sql)) {
                             $date = date("d/m/Y");
                             $time = date("h:i:sa");
-                            $action = "Create";
+                            $action = "Add";
                             $module = "Tenants Management";
                             mysqli_stmt_bind_param($stmt, "ssssss", $date, $time, $action, $module, $_POST['txtapartmentNo'], $_SESSION['username']);
                             if (mysqli_stmt_execute($stmt)) {
