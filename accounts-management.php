@@ -8,9 +8,16 @@
     
     <?php
         session_start();
+
+        if(!isset($_SESSION['username']) || !isset($_SESSION['usertype'])) {
+            header("Location: login.php");
+            exit();
+        }
+        
         $username = $_SESSION['username'];
         $usertype = $_SESSION['usertype'];
     ?>
+    
     <p>Welcome, <?php echo htmlspecialchars($username); ?>.</p>
     <p>Usertype: <?php echo htmlspecialchars($usertype); ?></p>
 
