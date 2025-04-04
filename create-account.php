@@ -1,22 +1,25 @@
 <?php
-require_once "config.php"; //need data
-include "sessionchecker.php"; //just including the codes from the src file 
+require_once "config.php"; // Database connection
+include "sessionchecker.php"; // Ensure the user is logged in
+
+$msg = ""; // Initialize the message variable
+
 if (isset($_POST['btnsubmit'])) {
     $updatemsg = "";
-    $msg = "";
-    //if user is already existing
+    // Check if the user already exists
     $sql = "SELECT * FROM tblaccounts WHERE username = ?";
     if ($stmt = mysqli_prepare($link, $sql)) {
         mysqli_stmt_bind_param($stmt, "s", $_POST['txtusername']);
         if (mysqli_stmt_execute($stmt)) {
             $result = mysqli_stmt_get_result($stmt);
-            if (mysqli_num_rows($result) ==  0) {
-                //insert account
+            if (mysqli_num_rows($result) == 0) {
+                // Insert account
                 $sql = "INSERT INTO tblaccounts (username, password, usertype, createdby, datecreated) VALUES (?,?,?,?,?)";
                 if ($stmt = mysqli_prepare($link, $sql)) {
                     $datecreated = date("m/d/Y");
                     mysqli_stmt_bind_param($stmt, "sssss", $_POST['txtusername'], $_POST['txtpassword'], $_POST['cmbtype'], $_SESSION['username'], $datecreated);
                     if (mysqli_stmt_execute($stmt)) {
+                        // Log the creation
                         $sql = "INSERT INTO tbllogs (datelog, timelog, action, module, ID, performedby) VALUES (?, ?, ?, ?, ?, ?)";
                         if ($stmt = mysqli_prepare($link, $sql)) {
                             $date = date("d/m/Y");
@@ -34,14 +37,14 @@ if (isset($_POST['btnsubmit'])) {
                         }
                     }
                 } else {
-                    $msg = "Error on adding new account";
+                    $msg = "<font color='red'>Error on adding new account</font>";
                 }
             } else {
-                $msg = "Username already exixst";
+                $msg = "<font color='red'>Username already exists</font>";
             }
         }
     } else {
-        echo "Error on finding if user exist";
+        $msg = "<font color='red'>Error on finding if user exists</font>";
     }
 }
 
@@ -53,14 +56,17 @@ if (isset($_POST['btnsubmit'])) {
     </head>
     <body>
         <p>Create new Account</p>
+        <!-- Display the message -->
+        <?php if (!empty($msg)) echo "<p>$msg</p>"; ?>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-        <input type="text" name="txtusername" placeholder="Username" required><br>
-        <input type="password" id="password" name="txtpassword" placeholder="Password" required><br>
-        <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password<br>
-            User type: <select name="cmbtype" id="cmbtype" required><br>
+            <input type="text" name="txtusername" placeholder="Username" required><br>
+            <input type="password" id="password" name="txtpassword" placeholder="Password" required><br>
+            <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password<br>
+            User type: 
+            <select name="cmbtype" id="cmbtype" required><br>
                 <option class="default" value="">-- Select Usertype --</option>
-                <option value="ADMINISTRATOR">LANDLORD</option>
-                <option value="REGISTRAR">TENANT</option><br><br>
+                <option value="LANDLORD">LANDLORD</option>
+                <option value="TENANT">TENANT</option><br><br>
             </select><br><br>
             <button type="submit" name="btnsubmit">Submit</button>
             <a href="accounts-management.php">Cancel</a>

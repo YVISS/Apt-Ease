@@ -1,3 +1,45 @@
+<?php
+// Include the necessary files
+require_once "config.php"; // Database connection
+include "sessionchecker.php"; // Ensure the user is logged in
+
+// Check if user is logged in (assuming you store the username in the session)
+if (isset($_SESSION['username'])) {
+    // Fetch the logged-in user's username
+    $username = $_SESSION['username'];
+    
+    // Query to get tenant information based on the username
+    $sql = "SELECT t.apartmentNo, t.firstname, t.middlename, t.lastname, t.contactNo, t.downpayment, t.addedby, t.dateadded
+            FROM tbltenants t
+            JOIN tblaccounts a ON t.username = a.username
+            WHERE t.username = ?";
+    
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        // Bind the parameter (username)
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        
+        // Execute the query
+        if (mysqli_stmt_execute($stmt)) {
+            // Get the result
+            $result = mysqli_stmt_get_result($stmt);
+            
+            // Check if the tenant data exists
+            if (mysqli_num_rows($result) > 0) {
+                // Fetch the tenant data
+                $tenant = mysqli_fetch_assoc($result);
+            } else {
+                $tenant = null;
+            }
+        } else {
+            $tenant = null;
+        }
+    } else {
+        $tenant = null;
+    }
+} else {
+    $tenant = null;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,13 +114,19 @@
         </header>
         <div class="main-content">
             <div class="page-title">
-                <h1>Main Tenant</h1>
+                <h1>Main Tenant</h1><br>
+                <h3>Welcome, <?= $tenant['firstname'] . " " . $tenant['lastname']; ?></h3>
+                    <p><strong>Apartment No:</strong> <?= $tenant['apartmentNo']; ?></p>
+                    <p><strong>Contact No:</strong> <?= $tenant['contactNo']; ?></p>
+                    <p><strong>Downpayment Status:</strong> <?= $tenant['downpayment']; ?></p>
+                    <p><strong>Added By:</strong> <?= $tenant['addedby']; ?></p>
+                    <p><strong>Date Added:</strong> <?= $tenant['dateadded']; ?></p>
             </div>
         </div>
         <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
         </div>
         </div>
-
+    
     <script>
         const body = document.querySelector("body"),
             sidebar = body.querySelector(".sidebar"),

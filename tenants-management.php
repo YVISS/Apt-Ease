@@ -17,12 +17,12 @@
     <a href='logout.php'>Logout</a><br><br>
 
     <a href = "accounts-management.php">Accounts</a><br>
-    <a href = "tenants-management.php">Tenants</a><br>
+    <a href = "add-management.php">Tenants</a><br>
     <a href = "payments-management.php">Payments</a><br>
     <a href = "maintenance-management.php">Maintenance</a><br><br>
 
     <form action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method = "POST">
-        <a href ="create-tenant.php">Add new tenant</a><br><br>
+        <a href ="add-tenant.php">Add new tenant</a><br><br>
 
 		<br>Search: <input type="text" name="txtsearch">
 		<input type="submit" name="btnsearch" value="Search">
@@ -52,8 +52,8 @@
                 echo "<td class = 'items'>" . $row['addedby'] . "</td>";
                 echo "<td class = 'items'>" . $row['dateadded'] . "</td>";
                 echo "<td = 'action'>";
-                echo "<a href='update-tenant.php?username=" . $row['apartmentNo'] . "'>Update</a>";
-                echo "<a href='delete-tenant.php?username=" . $row['apartmentNo'] . "' class='delete'>
+                echo "<a href='update-tenant.php?apartmentNo=" . $row['apartmentNo'] . "'>Update</a>";
+                echo "<a href='delete-tenant.php?apartmentNo=" . $row['apartmentNo'] . "' class='delete'>
                 <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
                     <path stroke='none' d='M0 0h24v24H0z' fill='none'/>
                     <path d='M4 7l16 0' />
