@@ -29,7 +29,7 @@ if (isset($_POST['btnlogin'])) {
                     $msg .= "ERROR: Usertype not available";
                 }
             } else {
-                $msg .= "Incorrect Login Credentials";
+                $msg .= "<font color='red'; font-weight: 800; style='font-weight: 800;'>Incorrect Login Credentials</font>";
             }
         } else {
             $msg .= "ERROR on the login statement";
