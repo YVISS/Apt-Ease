@@ -1,11 +1,7 @@
 <?php
 require_once "config.php";
 include "sessionchecker.php";
-
-if (!isset($_SESSION['username'])) {
-    echo "<font color='red'>Error: User not logged in.</font>";
-    exit();
-}
+include "errors.php";
 
 if (isset($_POST['btnsubmit'])) {
     $sql = "DELETE FROM tbltenants WHERE apartmentNo = ?";

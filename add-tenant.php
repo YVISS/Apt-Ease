@@ -1,6 +1,7 @@
 <?php
 require_once "config.php"; // Include database connection
 include "sessionchecker.php"; // Session checker (not modified)
+include "errors.php"; // Include error handling (not modified)
 
 if (isset($_POST['btnsubmit'])) {
     $updatemsg = "";
