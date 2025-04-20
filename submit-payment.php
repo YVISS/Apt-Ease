@@ -21,23 +21,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt = mysqli_prepare($link, $sql)) {
             mysqli_stmt_bind_param($stmt, "sss", $username, $amount, $paymentMethod);
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: payments-management.php"); // Redirect after submission
+                header("Location: payments-management.php?updatemsg=" . urlencode("Payment submitted successfully."));
                 exit();
             } else {
-                echo "<p class='err-msg'>Error submitting payment.</p>";
+                $errormsg = "Error submitting payment.";
             }
         } else {
-            echo "<p class='err-msg'>Error preparing statement.</p>";
+            $errormsg = "Error preparing statement.";
         }
     } else {
-        echo "<p class='err-msg'>Please fill in all fields.</p>";
+        $errormsg = "Please fill in all fields.";
     }
 }
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/submit-payment.css">
+    <link rel="stylesheet" href="css/modern-normalize.css">
     <title>Submit Payment</title>
     <script>
         function showQR() {
@@ -50,34 +54,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 qrContainer.style.display = "block";
                 qrImage.src = "generate_qr.php?amount=" + amount + "&method=" + method.value;
             } else {
-                qrContainer.style.display = "none";
+                qrContainer.style.display = "block";
             }
         }
     </script>
 </head>
+
 <body>
-    <h2>Submit Payment</h2>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label>Apartment ID:</label>
-        <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" readonly><br>
-
-        <label>Amount:</label>
-        <input type="number" id="amount" name="amount" required><br>
-
-        <label>Payment Method:</label><br>
-        <input type="radio" name="paymentMethod" value="GCash" onclick="showQR()" required> GCash
-        <input type="radio" name="paymentMethod" value="Bank" onclick="showQR()" required> Bank<br>
-
-        <div id="qrContainer" style="display:none;">
-            <p>Scan QR to Pay:</p>
-            <img id="qrImage" src="" alt="QR Code">
+    <div class="wrapper">
+        <div class="card">
+            <h1>Submit Payment</h1>
+            <!-- Display error message -->
+            <?php if (!empty($errormsg)) echo "<p class='message error'>$errormsg</p>"; ?>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="form-group">
+                    <label for="username">Apartment ID</label>
+                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label><br>
+                    <input type="radio" name="paymentMethod" value="GCash" onclick="showQR()" required> GCash
+                    <input type="radio" name="paymentMethod" value="Bank" onclick="showQR()" required> Bank
+                </div>
+                <div id="qrContainer" style="display:none;">
+                    <p>Scan QR to Pay:</p>
+                    <img id="qrImage" src="" alt="QR Code">
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Submit Payment</button>
+                    <a href="payments-management.php" class="cancel-btn">Cancel</a>
+                </div>
+            </form>
         </div>
-
-        <br>
-        <button type="submit">Submit Payment</button>
-    </form>
-
-    <br>
-    <a href="payments-management.php"><button>Back</button></a>
+    </div>
 </body>
+
 </html>

@@ -2,7 +2,8 @@
 require_once "config.php"; // Database connection
 include "sessionchecker.php"; // Ensure the user is logged in
 
-$msg = ""; // Initialize the message variable
+$updatemsg = '';
+$errormsg = '';
 
 if (isset($_POST['btnsubmit'])) {
     $updatemsg = "";
@@ -29,57 +30,82 @@ if (isset($_POST['btnsubmit'])) {
                             mysqli_stmt_bind_param($stmt, "ssssss", $date, $time, $action, $module, trim($_POST['txtusername']), $_SESSION['username']);
                             if (mysqli_stmt_execute($stmt)) {
                                 $updatemsg = "New User Added";
-                                header("Location: accounts-management.php?msg=" . urlencode($updatemsg));
+                                header("Location: accounts-management.php?updatemsg=" . urlencode($updatemsg));
                                 exit();
                             } else {
-                                $msg = "<font color='red'>Error on insert Log</font>";
+                                $errormsg = "Error on inserting logs: ";
+                                header("Location: accounts-management.php?errormsg=" . urlencode($errormsg));
+                                exit();
                             }
                         }
                     }
                 } else {
-                    $msg = "<font color='red'>Error on adding new account</font>";
+                    $errormsg = "Error on adding new account";
+                    header("Location: accounts-management.php?errormsg=" . urlencode($errormsg));
+                    exit();
                 }
             } else {
-                $msg = "<font color='red'>Username already exists</font>";
+                $errormsg = "Username already exists";
+                header("Location: accounts-management.php?errormsg=" . urlencode($errormsg));
+                exit();
             }
         }
     } else {
-        $msg = "<font color='red'>Error on finding if user exists</font>";
+        $errormsg = "Error on finding if user exists";
+        header("Location: accounts-management.php?errormsg=" . urlencode($errormsg));
+        exit();
     }
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
-    <head>
-        <title>Create new Account</title>
-    </head>
-    <body>
-        <p>Create new Account</p>
-        <!-- Display the message -->
-        <?php if (!empty($msg)) echo "<p>$msg</p>"; ?>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-            <input type="text" name="txtusername" placeholder="Username" required><br>
-            <input type="password" id="password" name="txtpassword" placeholder="Password" required><br>
-            <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password<br>
-            User type: 
-            <select name="cmbtype" id="cmbtype" required><br>
-                <option class="default" value="">-- Select Usertype --</option>
-                <option value="LANDLORD">LANDLORD</option>
-                <option value="TENANT">TENANT</option><br><br>
-            </select><br><br>
-            <button type="submit" name="btnsubmit">Submit</button>
-            <a href="accounts-management.php">Cancel</a>
-        </form>
-        <script>
-            function togglePassword() {
-                var passwordField = document.getElementById("password");
-                if (passwordField.type === "password") {
-                    passwordField.type = "text";
-                } else {
-                    passwordField.type = "password";
-                }
-            }
-        </script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/create-account.css">
+    <link rel="stylesheet" href="css/modern-normalize.css">
+    <title>Create New Account</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="card">
+            <h1>Create New Account</h1>
+            <!-- Display the message -->
+            <?php if (!empty($msg)) echo "<p class='message'>$msg</p>"; ?>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                <div class="form-group">
+                    <label for="txtusername">Username</label>
+                    <input type="text" id="txtusername" name="txtusername" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="txtpassword" placeholder="Enter password" required>
+                    <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password
+                </div>
+                <div class="form-group">
+                    <label for="cmbtype">User Type</label>
+                    <select name="cmbtype" id="cmbtype" required>
+                        <option value="" disabled selected>-- Select Usertype --</option>
+                        <option value="LANDLORD">LANDLORD</option>
+                        <option value="TENANT">TENANT</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" name="btnsubmit">Submit</button>
+                    <a href="accounts-management.php" class="cancel-btn">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+    </script>
+</body>
+
 </html>

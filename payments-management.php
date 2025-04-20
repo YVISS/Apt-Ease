@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "config.php";
 include "sessionchecker.php"; // Include session checker
 include "errors.php"; // Include error handling
@@ -143,12 +142,23 @@ $username = $_SESSION['username'];
                     <h1>Payments Management</h1>
                     <p>Manage Payments Here</p>
                 </div>
+                <div id="php_error" class="error">
+                    <?php
+                    if (isset($_GET['updatemsg'])) {
+                        // Display the update status message
+                        echo "<div class='msg' style=' color: green'> <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-circle-check-filled' width='24' height='24' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z' stroke-width='0' fill='currentColor' /></svg>" . htmlspecialchars($_GET['updatemsg']) . "</div>";
+                    }
+                    if (isset($_GET['errormsg'])) {
+                        echo '<div class="msg" style=" color: red"> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-xbox-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10 -10 10s-10 -4.477 -10 -10s4.477 -10 10 -10m3.6 5.2a1 1 0 0 0 -1.4 .2l-2.2 2.933l-2.2 -2.933a1 1 0 1 0 -1.6 1.2l2.55 3.4l-2.55 3.4a1 1 0 1 0 1.6 1.2l2.2 -2.933l2.2 2.933a1 1 0 0 0 1.6 -1.2l-2.55 -3.4l2.55 -3.4a1 1 0 0 0 -.2 -1.4" /></svg>' . htmlspecialchars($_GET['errormsg']) . "</div>";
+                    }
+                    ?>
+                </div>
                 <div class="form_section">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <?php 
-                            if($_SESSION['usertype'] == "LANDLORD") {
+                            if($_SESSION['usertype'] == "TENANT") {
                                 echo '
-                                    <button class="btncreate" type="button" onclick="window.location.href=\'add-tenant.php\'">Add Tenant</button>';
+                                    <button class="btncreate" type="button" onclick="window.location.href=\'submit-payment.php\'">Submit Payment</button>';
                             }
                         ?>
                         <input type="text" name="txtsearch" placeholder="Search tenant....">
@@ -186,7 +196,7 @@ $username = $_SESSION['username'];
                                 if ($usertype == "LANDLORD") {
                                     if ($status == "Pending Confirmation") {
                                         echo "<td class='items'>
-                                                <button onclick='confirmPayment(\"" . urlencode($row['username']) . "\", \"" . $row['amount'] . "\", \"" . urlencode($row['date']) . "\")'>Confirm</button>
+                                                <button class='confirm-btn' onclick='confirmPayment(\"" . urlencode($row['username']) . "\", \"" . $row['amount'] . "\", \"" . urlencode($row['date']) . "\")'>Confirm</button>
                                               </td>";
                                     } else {
                                         echo "<td class='items'>—</td>"; // Empty action column if already confirmed

@@ -1,24 +1,23 @@
 <?php
 require_once "config.php"; // Include database connection
-include "sessionchecker.php"; // Session checker (not modified)
-include "errors.php"; // Include error handling (not modified)
+include "sessionchecker.php"; // Session checker
 
 if (isset($_POST['btnsubmit'])) {
     $updatemsg = "";
-    $msg = "";
+    $errormsg = "";
+
     // Check if the tenant's apartmentNo already exists
     $sql = "SELECT * FROM tbltenants WHERE apartmentNo = ?";
     if ($stmt = mysqli_prepare($link, $sql)) {
         mysqli_stmt_bind_param($stmt, "s", $_POST['txtapartmentNo']);
         if (mysqli_stmt_execute($stmt)) {
             $result = mysqli_stmt_get_result($stmt);
-            if (mysqli_num_rows($result) ==  0) {
+            if (mysqli_num_rows($result) == 0) {
                 // Insert tenant data into tbltenants
                 $sql = "INSERT INTO tbltenants (apartmentNo, firstname, middlename, lastname, contactNo, downpayment, addedby, dateadded, username) 
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 if ($stmt = mysqli_prepare($link, $sql)) {
                     $dateadded = date("m/d/Y");
-                    // Add username from the form as well
                     mysqli_stmt_bind_param($stmt, "sssssssss", $_POST['txtapartmentNo'], $_POST['firstname'], $_POST['middlename'], $_POST['lastname'], $_POST['contactNo'], $_POST['downpayment'], $_SESSION['username'], $dateadded, $_POST['username']);
                     if (mysqli_stmt_execute($stmt)) {
                         // Insert log for this action
@@ -32,73 +31,108 @@ if (isset($_POST['btnsubmit'])) {
                             mysqli_stmt_bind_param($stmt, "ssssss", $date, $time, $action, $module, $_POST['txtapartmentNo'], $_SESSION['username']);
                             if (mysqli_stmt_execute($stmt)) {
                                 $updatemsg = "New Tenant Added";
-                                header("Location: tenants-management.php?msg=" . urlencode($updatemsg));
+                                header("Location: tenants-management.php?updatemsg=" . urlencode($updatemsg));
                                 exit();
                             } else {
-                                $msg = "<font color='red'>Error on inserting Logs</font>";
+                                $errormsg = "Error on inserting logs.";
+                                header("Location: tenants-management.php?errormsg=" . urlencode($errormsg));
+                                exit();
                             }
                         }
+                    } else {
+                        $errormsg = "Error on adding new tenant.";
+                        header("Location: tenants-management.php?errormsg=" . urlencode($errormsg));
+                        exit();
                     }
-                } else {
-                    $msg = "<font color='red'>Error on adding new tenant</font>";
                 }
             } else {
-                $msg = "<font color='red'>Apartment No. already exists</font>";
+                $errormsg = "Apartment No. already exists.";
+                header("Location: tenants-management.php?errormsg=" . urlencode($errormsg));
+                exit();
             }
         }
     } else {
-        echo "<font color='red'>Error on finding if tenant exists</font>";
+        $errormsg = "Error on finding if tenant exists.";
+        header("Location: tenants-management.php?errormsg=" . urlencode($errormsg));
+        exit();
     }
 }
-
 ?>
 
-<html>
-    <head>
-        <title>Add new Tenant</title>
-    </head>
-    <body>
-        <p>Add new Tenant</p>
-        <?php if (!empty($msg)) echo "<p>$msg</p>"; ?>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-            <!-- Select Account from tblaccounts that does not have tenant information -->
-            <label for="username">Select Account:</label>
-            <select name="username" id="username" required>
-                <option value="">-- Select Account --</option>
-                <?php
-                // Fetch accounts from tblaccounts that do not have corresponding tenant information in tbltenants
-                $sql = "SELECT a.username 
-                        FROM tblaccounts a 
-                        LEFT JOIN tbltenants t ON a.username = t.username 
-                        WHERE t.username IS NULL";
-                $result = mysqli_query($link, $sql);
-                if ($result) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<option value='" . htmlspecialchars($row['username']) . "'>" . htmlspecialchars($row['username']) . "</option>";
-                    }
-                } else {
-                    echo "<option>No available accounts</option>";
-                }
-                ?>
-            </select><br><br>
+<!DOCTYPE html>
+<html lang="en">
 
-            <!-- Tenant Information -->
-            <input type="text" name="txtapartmentNo" placeholder="Apartment No" required><br>
-            <input type="text" name="firstname" placeholder="First Name" required><br>
-            <input type="text" name="middlename" placeholder="Middle Name" required><br>
-            <input type="text" name="lastname" placeholder="Last Name" required><br>
-            <input type="text" name="contactNo" placeholder="Contact No." required><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/add-tenant.css">
+    <link rel="stylesheet" href="css/modern-normalize.css">
+    <title>Add New Tenant</title>
+</head>
 
-            <!-- Downpayment Selection -->
-            Downpayment: 
-            <select name="downpayment" id="downpayment" required>
-                <option value="">-- Select Downpayment Status --</option>
-                <option value="YES">PAID</option>
-                <option value="NO">NOT PAID</option>
-            </select><br><br>
+<body>
+    <div class="wrapper">
+        <div class="card">
+            <h1>Add New Tenant</h1>
+            <!-- Display any error messages -->
+            <?php if (!empty($errormsg)) echo "<p class='message error'>$errormsg</p>"; ?>
+            <?php if (!empty($updatemsg)) echo "<p class='message success'>$updatemsg</p>"; ?>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                <div class="form-group">
+                    <label for="username">Select Account:</label>
+                    <select name="username" id="username" required>
+                        <option value="">-- Select Account --</option>
+                        <?php
+                        $sql = "SELECT a.username 
+                                FROM tblaccounts a 
+                                LEFT JOIN tbltenants t ON a.username = t.username 
+                                WHERE t.username IS NULL";
+                        $result = mysqli_query($link, $sql);
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . htmlspecialchars($row['username']) . "'>" . htmlspecialchars($row['username']) . "</option>";
+                            }
+                        } else {
+                            echo "<option>No available accounts</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="txtapartmentNo">Apartment No</label>
+                    <input type="text" name="txtapartmentNo" id="txtapartmentNo" placeholder="Apartment No" required>
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="middlename">Middle Name</label>
+                    <input type="text" name="middlename" id="middlename" placeholder="Middle Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactNo">Contact No.</label>
+                    <input type="text" name="contactNo" id="contactNo" placeholder="Contact No." required>
+                </div>
+                <div class="form-group">
+                    <label for="downpayment">Downpayment</label>
+                    <select name="downpayment" id="downpayment" required>
+                        <option value="">-- Select Downpayment Status --</option>
+                        <option value="YES">PAID</option>
+                        <option value="NO">NOT PAID</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" name="btnsubmit">Submit</button>
+                    <a href="tenants-management.php" class="cancel-btn">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
 
-            <button type="submit" name="btnsubmit">Submit</button>
-            <a href="tenants-management.php">Cancel</a>
-        </form>
-    </body>
 </html>

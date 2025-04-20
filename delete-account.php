@@ -1,7 +1,8 @@
 <?php
 require_once "config.php";
 include "sessionchecker.php";
-
+$updatemsg = '';
+$errormsg = '';
 
 if (!isset($_SESSION['username'])) {
     echo "<font color='red'>Error: User not logged in.</font>";
@@ -24,30 +25,29 @@ if (isset($_POST['btnsubmit'])) {
                 $performedby = $_SESSION['username'];
                 mysqli_stmt_bind_param($stmt, "ssssss", $date, $time, $action, $module, $username, $performedby);
                 if (mysqli_stmt_execute($stmt)) {
-                    header("location: accounts-management.php");
+                    $updatemsg = "Account Deleted";
+                    header("location: accounts-management.php?updatemsg=" . urlencode($updatemsg));
                     exit();
                 } else {
                     echo "<font color='red'>Error on inserting logs: " . mysqli_error($link) . "</font>";
                 }
             } else {
-                echo "<font color='red'>Error on preparing log statement: " . mysqli_error($link) . "</font>";
+                
+                $errormsg = "ERROR: Inserting on Logs";
+                header("location: accounts-management.php?errormsg=" . urlencode($errormsg));
+                exit();
             }
         } else {
-            echo "<font color='red'>Error on deleting account: " . mysqli_error($link) . "</font>";
+            
+            $errormsg = "Error on deleting account:";
+            header("location: accounts-management.php?errormsg=" . urlencode($errormsg));
+            exit();
         }
     } else {
-        echo "<font color='red'>Error on preparing delete statement: " . mysqli_error($link) . "</font>";
+        $errormsg = "Error on preparing delete statement";
+        header("location: accounts-management.php?errormsg=" . urlencode($errormsg));
+        exit();
+
     }
 }
 ?>
-<html>
-<title>Delete Account</title>
-<body>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-        <input type="hidden" name="txtusername" value="<?php echo trim($_GET['username']); ?>" />
-        <p>Are you sure you want to delete this account?</p><br>
-        <input type="submit" name="btnsubmit" value="Yes">
-        <a href="accounts-management.php">No</a>
-    </form>
-</body>
-</html>
