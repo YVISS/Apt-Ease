@@ -14,7 +14,6 @@ body{
     background-image:linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url(../src/apt-ease-bg.png);
     background-attachment: fixed;
     display: flex;
-    
     overflow-X: Hidden;
 }
 /* wrapper */
@@ -276,7 +275,7 @@ input[name="txtsearch"]{
 }
 .table_component {
     overflow: auto;
-    width: auto;
+    width: 100%;
     height: auto;
 }
 
@@ -439,4 +438,18 @@ input[name="txtsearch"]{
     font-weight: 600;
     color: #010124; /* Darker navy blue */
     margin-bottom: 20px;
+}
+
+.confirm-btn {
+    background-color: #32CD32; /* Lime green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.confirm-btn:hover {
+    background-color: #28a745; /* Darker green for hover effect */
 }

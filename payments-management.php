@@ -233,11 +233,7 @@ $username = $_SESSION['username'];
                         echo "Error loading payment records.";
                     }
                     ?>
-                    <?php if ($usertype == "TENANT") { ?>
-                    <form action="submit-payment.php" method="GET">
-                        <button type="submit">Add Payment</button>
-                    </form>
-                    <?php } ?>
+                    
                 </div>
 
                 <!-- Confirmation Modal -->

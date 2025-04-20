@@ -21,10 +21,8 @@ if (isset($_POST['btnlogin'])) {
                 $_SESSION['username'] = $account['username'];
                 $_SESSION['usertype'] = $account['usertype'];
                 //validate usertype
-                if($_SESSION['usertype'] == 'LANDLORD'){
-                    header("location: main-admin.php");
-                }else if($_SESSION['usertype'] == 'TENANT'){
-                    header('location: main-tenant.php');
+                if($_SESSION['usertype'] == 'LANDLORD' || $_SESSION['usertype'] == 'TENANT'){
+                    header("location: main.php");
                 }else{
                     $msg .= "ERROR: Usertype not available";
                 }
