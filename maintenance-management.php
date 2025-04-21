@@ -245,6 +245,7 @@ let errormsg = document.getElementById("php_error");
             setTimeout(() => errormsg.style.display = none, 1000);
         }
     }, 3000);
+    
 </script>
 
 </html>

@@ -260,6 +260,8 @@ $username = $_SESSION['username'];
     </div>
 </body>
 <script>
+    
+    let errormsg = document.getElementById("php_error");
     const body = document.querySelector("body"),
         sidebar = body.querySelector(".sidebar"),
         toggle = sidebar.querySelector(".toggle");
@@ -286,16 +288,7 @@ $username = $_SESSION['username'];
         }
     });
 
-    let errormsg = document.getElementById("php_error");
     let selectedUsername = "";
-
-    function openc(apartmentNo) {
-        selectedUsername = apartmentNo;
-        document.getElementById("updateModal").style.display = "block";
-        document.getElementById("confirmUpdate").onclick = function() {
-            window.location.href = `update-tenant.php?apartmentNo=${selectedUsername}`;
-        };
-    }
 
     function confirmation(apartmentNo) {
         document.getElementById('deleteApartmentNo').value = apartmentNo;
@@ -318,10 +311,6 @@ $username = $_SESSION['username'];
         document.getElementById('confirmUsername').value = username;
         document.getElementById('confirmAmount').value = amount;
         document.getElementById('confirmDate').value = date;
-
-        // Update the confirmation message
-        document.getElementById('confirmMessage').textContent = `Are you sure you want to confirm the payment of ${amount} for ${username} on ${date}?`;
-
         // Display the modal
         document.getElementById('confirmModal').style.display = 'flex';
         
