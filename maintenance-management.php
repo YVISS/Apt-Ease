@@ -23,7 +23,7 @@ $usertype = $_SESSION['usertype'];
     <title>Apt-Ease - Maintenance Management</title>
 </head>
 
-<body>
+<body>x
     <nav class="sidebar">
         <header>
             <i class="toggle">

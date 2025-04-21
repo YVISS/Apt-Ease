@@ -1,186 +1,167 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 @import url('colors.css');
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
 }
+
 body {
     position: relative;
-    background: linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.30)), url('../src/apt-ease-bg.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../src/apt-ease-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;
     font-family: 'Nunito', sans-serif;
+    color: #333;
 }
 
-
-header{
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    border-bottom: 1px solid rgba(84, 83, 76, 0.2);
-}
-header img{
+header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    width: auto;
-    height: 75px;
-}
-.wrapper{
-    width: 100%;
-    height: 100%;
-   display: grid;
-   grid-template-rows:10% 85% 5%;
-}
-
-.main-content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
-.card{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 600px;
-    height: 500px;
-    background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
-    border-radius: 10px;
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    backdrop-filter: blur(5px); /* Blur effect */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
-    margin: auto;
     padding: 20px;
 }
 
-.card__content{
+header img {
+    width: auto;
+    height: 75px;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 85% 5%;
+}
+
+.main-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     width: 100%;
     height: 100%;
 }
 
-.card h1 {
-    color: var(--fuscous-gray);
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-.card label{
-    width: 60%;
-    font-size: 20px;
-    font-weight: 400;
+.card {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.card form{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-}
-
-.card input[type="text"], .card input[type="password"]{
-    display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid rgba(84, 83, 76, 0.2);
-    background: rgba(255, 255, 255, 0.5);
-    color: var(--fuscous-gray);
-    font-size: 16px;
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease-in-out;
 }
 
-.card__content .showPassword{
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.card label {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.card form {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
 }
 
-.showPassword input[type="checkbox"]{
-    height: 40px;
-    width: auto;
-    border: none;
-}
-
-
-.card-content .toggle-password {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.card .card__content button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15vw;
-    padding: 10px;
+.card input[type="text"], 
+.card input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
     margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid rgba(84, 83, 76, 0.2);
-    background: var(--muesli);
-    color: #FFFFFF;
-    font-size: 16px;
-    transition: 0.3s transform ease-in-out;
-    cursor: pointer;
-
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.card .card__content button:hover{
-    transform: translateY(-4px);
-    background: var(--fuscous-gray);
+.card input[type="text"]:focus, 
+.card input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .password-container {
     position: relative;
-    display: flex;
-    align-items: center;
+    width: 100%;
 }
 
 .password-container input {
-    width: 20vw;
-    padding-right: 40px; /* Space for the icon */
+    width: calc(100% - 40px);
+    padding-right: 40px;
 }
 
 .toggle-password {
     position: absolute;
-    top: 20px;
+    top: 50%;
     right: 10px;
+    transform: translateY(-50%);
     cursor: pointer;
-    user-select: none;
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
 }
 
-footer{
+.toggle-password:hover {
+    opacity: 1;
+}
+
+.card button {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--fuscous-gray);
-    color: var(--light-text);
-    border-top: 1px solid rgba(84, 83, 76, 0.1);
+    padding: 12px 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #aa6c39, #9c7c6e); /* Muesli (#aa6c39) and Driftwood (#9c7c6e) */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s background-color ease-in-out;
+}
+
+.card button:hover {
+    background: linear-gradient(135deg, #9c7c6e, #aa6c39);
+    transform: translateY(-3px);
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
