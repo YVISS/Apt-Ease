@@ -188,11 +188,11 @@ $username = $_SESSION['username'];
                                 echo "<td class='items'>" . htmlspecialchars($row['paymentMethod']) . "</td>";
                                 echo "<td class='items'>" . htmlspecialchars($row['date']) . "</td>";
 
-                                // ✅ Display status for BOTH Tenant and Landlord
+                                //  Display status for BOTH Tenant and Landlord
                                 $status = htmlspecialchars($row['status']);
                                 echo "<td class='items'>" . $status . "</td>";
 
-                                // ✅ Landlord sees Confirm button only for "Pending Confirmation" payments
+                                //  Landlord sees Confirm button only for "Pending Confirmation" payments
                                 if ($usertype == "LANDLORD") {
                                     if ($status == "Pending Confirmation") {
                                         echo "<td class='items'>
@@ -213,7 +213,7 @@ $username = $_SESSION['username'];
                             echo "</div>";
                         }
                     }
-
+                    
                     // Fetch payments based on user type
                     if ($usertype == 'LANDLORD') {
                         $sql = "SELECT username, amount, paymentMethod, date, status FROM tblpayments ORDER BY date DESC";
@@ -247,7 +247,7 @@ $username = $_SESSION['username'];
                             <input type="hidden" name="amount" id="confirmAmount">
                             <input type="hidden" name="date" id="confirmDate">
                             <div class="form__btns">
-                                <button type="submit" class="confirm-btn">Yes</button>
+                                <input type="submit" class="confirm-btn" value="Confirm" name="confirm-btn" id="confirmUpdate">
                                 <button type="button" class="cancel-btn" onclick="closeModal('confirmModal')">No</button>
                             </div>
                         </form>
@@ -286,6 +286,7 @@ $username = $_SESSION['username'];
         }
     });
 
+    let errormsg = document.getElementById("php_error");
     let selectedUsername = "";
 
     function openc(apartmentNo) {
@@ -323,6 +324,8 @@ $username = $_SESSION['username'];
 
         // Display the modal
         document.getElementById('confirmModal').style.display = 'flex';
+        
+        
     }
 
     function closeModal(modalId) {
@@ -337,5 +340,13 @@ $username = $_SESSION['username'];
             closeModal('confirmModal');
         }
     };
+
+    setTimeout(() => {
+        if (errormsg) {
+            errormsg.style.transition = "opacity 1s";
+            errormsg.style.opacity = "0";
+            setTimeout(() => errormsg.style.display = none, 1000);
+        }
+    }, 3000);
 </script>
 </html>
