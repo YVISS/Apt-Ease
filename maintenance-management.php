@@ -146,6 +146,11 @@ $usertype = $_SESSION['usertype'];
                 <div class="page-title">
                     <h1>Maintenance Management</h1>
                     <p>Manage Maintenance Records Here</p>
+                    <?php
+                    if($usertype == "LANDLORD") {
+                        echo '<a href="maintenance-logs.php">View Maintenance Logs</a>';
+                    }
+                    ?>
                 </div>
                 <div id="php_error" class="error">
                     <?php

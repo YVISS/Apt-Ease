@@ -23,8 +23,8 @@ if (isset($_POST['btnsubmit'])) {
                         // Log the creation
                         $sql = "INSERT INTO tbllogs (datelog, timelog, action, module, ID, performedby) VALUES (?, ?, ?, ?, ?, ?)";
                         if ($stmt = mysqli_prepare($link, $sql)) {
-                            $date = date("d/m/Y");
-                            $time = date("h:i:sa");
+                            $date = date("m/d/Y");
+                            $time = date("h:i:s");
                             $action = "Create";
                             $module = "Accounts Management";
                             mysqli_stmt_bind_param($stmt, "ssssss", $date, $time, $action, $module, trim($_POST['txtusername']), $_SESSION['username']);

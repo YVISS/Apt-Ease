@@ -141,6 +141,11 @@ $username = $_SESSION['username'];
                 <div class="page-title">
                     <h1>Payments Management</h1>
                     <p>Manage Payments Here</p>
+                    <?php
+                    if($usertype == "LANDLORD") {
+                        echo '<a href="payments-logs.php">View Payments Logs</a>';
+                    }
+                    ?>
                 </div>
                 <div id="php_error" class="error">
                     <?php

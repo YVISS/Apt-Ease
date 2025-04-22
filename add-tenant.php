@@ -24,8 +24,8 @@ if (isset($_POST['btnsubmit'])) {
                         $sql = "INSERT INTO tbllogs (datelog, timelog, action, module, ID, performedby) 
                                 VALUES (?, ?, ?, ?, ?, ?)";
                         if ($stmt = mysqli_prepare($link, $sql)) {
-                            $date = date("d/m/Y");
-                            $time = date("h:i:sa");
+                            $date = date("m/d/Y");
+                            $time = date("h:i:s");
                             $action = "Add";
                             $module = "Tenants Management";
                             mysqli_stmt_bind_param($stmt, "ssssss", $date, $time, $action, $module, $_POST['txtapartmentNo'], $_SESSION['username']);
