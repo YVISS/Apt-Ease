@@ -19,7 +19,7 @@ $username = $_SESSION['username'];
 </head>
 
 <body>
-    <nav class="sidebar">
+<nav class="sidebar">
         <header>
             <i class="toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left-pipe">
@@ -159,11 +159,6 @@ $username = $_SESSION['username'];
                 <div class="page-title">
                     <h1>Payments Management</h1>
                     <p>Manage Payments Here</p>
-                    <?php
-                    if($usertype == "LANDLORD") {
-                        echo '<a href="payments-logs.php">View Payments Logs</a>';
-                    }
-                    ?>
                 </div>
                 <div id="php_error" class="error">
                     <?php
@@ -178,11 +173,16 @@ $username = $_SESSION['username'];
                 </div>
                 <div class="form_section">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                        <?php 
-                            if($_SESSION['usertype'] == "TENANT") {
-                                echo '
+                        <?php
+                        if ($_SESSION['usertype'] == "TENANT") {
+                            echo '
                                     <button class="btncreate" type="button" onclick="window.location.href=\'submit-payment.php\'">Submit Payment</button>';
-                            }
+                        }
+                        ?>
+                        <?php
+                        if ($usertype == "LANDLORD") {
+                            echo '<button class="btnlogs" type="button" onclick="openLogsModal()">View Records</button>';
+                        }
                         ?>
                         <input type="text" name="txtsearch" placeholder="Search tenant....">
                         <input type="submit" name="btnsearch" value="Search">
@@ -236,7 +236,7 @@ $username = $_SESSION['username'];
                             echo "</div>";
                         }
                     }
-                    
+
                     // Fetch payments based on user type
                     if ($usertype == 'LANDLORD') {
                         $sql = "SELECT username, amount, paymentMethod, date, status FROM tblpayments ORDER BY date DESC";
@@ -256,7 +256,7 @@ $username = $_SESSION['username'];
                         echo "Error loading payment records.";
                     }
                     ?>
-                    
+
                 </div>
 
                 <!-- Confirmation Modal -->
@@ -277,13 +277,23 @@ $username = $_SESSION['username'];
                     </div>
                 </div>
 
+                <!-- Logs Modal -->
+                <div id="logsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('logsModal')">&times;</span>
+                        <h2>Payment Logs</h2>
+                        <div id="logsContainer" class="table-container">
+                            <!-- Logs will be dynamically loaded here -->
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
         </div>
     </div>
 </body>
 <script>
-    
     let errormsg = document.getElementById("php_error");
     const body = document.querySelector("body"),
         sidebar = body.querySelector(".sidebar"),
@@ -336,8 +346,8 @@ $username = $_SESSION['username'];
         document.getElementById('confirmDate').value = date;
         // Display the modal
         document.getElementById('confirmModal').style.display = 'flex';
-        
-        
+
+
     }
 
     function closeModal(modalId) {
@@ -360,5 +370,29 @@ $username = $_SESSION['username'];
             setTimeout(() => errormsg.style.display = none, 1000);
         }
     }, 3000);
+
+    function openLogsModal() {
+        // Fetch logs via AJAX
+        fetch('payments-logs.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('logsContainer').innerHTML = data;
+                document.getElementById('logsModal').style.display = 'flex';
+            })
+            .catch(error => console.error('Error loading logs:', error));
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('logsModal');
+        if (event.target === modal) {
+            closeModal('logsModal');
+        }
+    };
 </script>
+
 </html>

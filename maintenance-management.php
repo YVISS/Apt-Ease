@@ -23,7 +23,7 @@ $usertype = $_SESSION['usertype'];
     <title>Apt-Ease - Maintenance Management</title>
 </head>
 
-<body>x
+<body>
     <nav class="sidebar">
         <header>
             <i class="toggle">
@@ -41,6 +41,12 @@ $usertype = $_SESSION['usertype'];
                     switch ($usertype) {
                         case 'LANDLORD':
                             echo '<li class="nav-link">
+                        <a href="main-admin.php">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>';
+                            echo '<li class="nav-link">
                                     <a href="accounts-management.php">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -53,69 +59,75 @@ $usertype = $_SESSION['usertype'];
                                     </a>
                                 </li>';
                             echo '<li class="nav-link">
-                                    <a href="tenants-management.php">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tent">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M11 14l4 6h6l-9 -16l-9 16h6l4 -6" />
-                                        </svg>
-                                        <span class="text nav-text">Tenants</span>
-                                    </a>
-                                </li>';
+                        <a href="tenants-management.php">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tent">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M11 14l4 6h6l-9 -16l-9 16h6l4 -6" />
+                            </svg>
+                            <span class="text nav-text">Tenants</span>
+                        </a>
+                    </li>';
                             echo '<li class="nav-link">
-                                    <a href="payments-management.php">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
-                                            <path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" />
-                                            <path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" />
-                                            <path d="M3 6v10c0 .888 .772 1.45 2 2" />
-                                            <path d="M3 11c0 .888 .772 1.45 2 2" />
-                                        </svg>
-                                        <span class="text nav-text">Payments</span>
-                                    </a>
-                                </li>';
+                                        <a href="payments-management.php">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
+                                                <path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" />
+                                                <path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" />
+                                                <path d="M3 6v10c0 .888 .772 1.45 2 2" />
+                                                <path d="M3 11c0 .888 .772 1.45 2 2" />
+                                            </svg>
+                                            <span class="text nav-text">Payments</span>
+                                        </a>
+                                    </li>';
                             echo '<li class="nav-link">
-                                    <a href="maintenance-management.php">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
-                                            <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0z" />
-                                        </svg>
-                                        <span class="text nav-text">Maintenance</span>
-                                    </a>
-                                </li>';
+                                        <a href="maintenance-management.php">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
+                                                <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0z" />
+                                            </svg>
+                                            <span class="text nav-text">Maintenance</span>
+                                        </a>
+                                    </li>';
+                            echo '<li class="nav-link">
+                        <a href="logs.php">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
+                            <span class="text nav-text">Logs</span>
+                        </a>
+                    </li>';
                             break;
-                            case 'TENANT':
-                                echo '<li class="nav-link">
-                            <a href="main-tenant.php">
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
-                                <span class="text nav-text">Home</span>
-                            </a>
-                        </li>';
-                                echo '<li class="nav-link">
-                                            <a href="payments-management.php">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
-                                                    <path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" />
-                                                    <path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" />
-                                                    <path d="M3 6v10c0 .888 .772 1.45 2 2" />
-                                                    <path d="M3 11c0 .888 .772 1.45 2 2" />
-                                                </svg>
-                                                <span class="text nav-text">Payments</span>
-                                            </a>
-                                        </li>';
-                                echo '<li class="nav-link">
-                                            <a href="maintenance-management.php">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
-                                                    <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0z" />
-                                                </svg>
-                                                <span class="text nav-text">Maintenance</span>
-                                            </a>
-                                        </li>';
-                                break;
+                        case 'TENANT':
+                            echo '<li class="nav-link">
+                        <a href="main-tenant.php">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>';
+                            echo '<li class="nav-link">
+                                        <a href="payments-management.php">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
+                                                <path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" />
+                                                <path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" />
+                                                <path d="M3 6v10c0 .888 .772 1.45 2 2" />
+                                                <path d="M3 11c0 .888 .772 1.45 2 2" />
+                                            </svg>
+                                            <span class="text nav-text">Payments</span>
+                                        </a>
+                                    </li>';
+                            echo '<li class="nav-link">
+                                        <a href="maintenance-management.php">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
+                                                <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0z" />
+                                            </svg>
+                                            <span class="text nav-text">Maintenance</span>
+                                        </a>
+                                    </li>';
+                            break;
                         default:
                             echo "<li>Unknown usertype.</li>";
                             break;
@@ -152,11 +164,6 @@ $usertype = $_SESSION['usertype'];
                 <div class="page-title">
                     <h1>Maintenance Management</h1>
                     <p>Manage Maintenance Records Here</p>
-                    <?php
-                    if($usertype == "LANDLORD") {
-                        echo '<a href="maintenance-logs.php">View Maintenance Logs</a>';
-                    }
-                    ?>
                 </div>
                 <div id="php_error" class="error">
                     <?php
@@ -186,7 +193,12 @@ $usertype = $_SESSION['usertype'];
                         <?php
                         if ($_SESSION['usertype'] == "TENANT") {
                             echo '
-                                    <button class="btncreate" type="button" onclick="window.location.href=\'submit-maintenance.php\'">Submit Maintenance</button>';
+                        <button class="btncreate" type="button" onclick="window.location.href=\'submit-maintenance.php\'">Submit Maintenance</button>';
+                        }
+                        ?>
+                        <?php
+                        if ($usertype == "LANDLORD") {
+                            echo '<button class="btnlogs" type="button" onclick="openLogsModal()">View Records</button>';
                         }
                         ?>
                         <input type="text" name="txtsearch" placeholder="Search tenant....">
@@ -223,18 +235,7 @@ $usertype = $_SESSION['usertype'];
                                     echo "<td>" . htmlspecialchars($row['dateSubmitted']) . "</td>";
                                     if ($usertype == 'LANDLORD') {
                                         echo "<td>
-                                                <form method='POST' action='confirm-management.php' onsubmit='return confirmAction();'>
-                                                    <input type='hidden' name='ticketID' value='" . htmlspecialchars($row['ticketID']) . "'>
-                                                    <input type='hidden' name='username' value='" . htmlspecialchars($row['username']). "'>
-                                                    <button type='submit' name='btnconfirm' class='confirm-btn'>Confirm</button>
-                                                </form>
-
-                                                <script>
-                                                function confirmAction() {
-                                                // Display a confirmation dialog with single quotes
-                                                return confirm('Are you sure you want to confirm this action?');
-                                                }
-                                                </script>
+                                                <button class='confirm-btn' onclick='confirmMaintenance(\"" . htmlspecialchars($row['ticketID']) . "\", \"" . htmlspecialchars($row['username']) . "\")'>Confirm</button>
                                               </td>";
                                     }
                                     echo "</tr>";
@@ -249,14 +250,40 @@ $usertype = $_SESSION['usertype'];
                     }
                     ?>
                 </div>
+                <!-- Confirmation Modal -->
+                <div id="confirmModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('confirmModal')">&times;</span>
+                        <h2>Confirm Maintenance</h2>
+                        <p id="confirmMessage">Are you sure you want to confirm this maintenance request?</p>
+                        <form id="confirmForm" action="confirm-management.php" method="POST">
+                            <input type="hidden" name="ticketID" id="confirmTicketID">
+                            <input type="hidden" name="username" id="confirmUsername">
+                            <div class="form__btns">
+                                <input type="submit" class="confirm-btn" value="Confirm" name="confirm-btn" id="confirmUpdate">
+                                <button type="button" class="cancel-btn" onclick="closeModal('confirmModal')">No</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- View Records Modal -->
+                <div id="viewRecordsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('viewRecordsModal')">&times;</span>
+                        <h2>Maintenance Logs</h2>
+                        <div id="logsContainer" class="table-container">
+                            <!-- Logs will be dynamically loaded here -->
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <footer>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
         </div>
     </div>
 </body>
 <script>
-
-let errormsg = document.getElementById("php_error");
+    let errormsg = document.getElementById("php_error");
     setTimeout(() => {
         if (errormsg) {
             errormsg.style.transition = "opacity 1s";
@@ -264,7 +291,7 @@ let errormsg = document.getElementById("php_error");
             setTimeout(() => errormsg.style.display = none, 1000);
         }
     }, 3000);
-    
+
     const body = document.querySelector("body"),
         sidebar = body.querySelector(".sidebar"),
         toggle = sidebar.querySelector(".toggle");
@@ -290,6 +317,39 @@ let errormsg = document.getElementById("php_error");
                 </svg>`;
         }
     });
+
+    function confirmMaintenance(ticketID, username) {
+        // Populate the modal with maintenance details
+        document.getElementById('confirmTicketID').value = ticketID;
+        document.getElementById('confirmUsername').value = username;
+
+        // Display the modal
+        document.getElementById('confirmModal').style.display = 'flex';
+    }
+
+    function openLogsModal() {
+        // Fetch logs via AJAX
+        fetch('maintenance-logs.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('logsContainer').innerHTML = data;
+                document.getElementById('viewRecordsModal').style.display = 'flex';
+            })
+            .catch(error => console.error('Error loading logs:', error));
+    }
+
+    function closeModal(modalId) {
+        // Hide the modal
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('viewRecordsModal');
+        if (event.target === modal) {
+            closeModal('viewRecordsModal');
+        }
+    };
 </script>
 
 </html>

@@ -14,7 +14,7 @@ body{
     background-image:linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url(../src/apt-ease-bg.png);
     background-attachment: fixed;
     display: flex;
-    overflow-X: Hidden;
+    overflow-X: hidden;
 }
 /* wrapper */
 .wrapper{
@@ -58,7 +58,7 @@ body{
 
 .sidebar .image-text img{
     width: 100px;
-    height: a   uto;
+    height: auto;
 }
 
 .sidebar header .image-text{
@@ -259,6 +259,39 @@ footer{
     margin-right: 5px;
 }
 
+.form_section .btnlogs, 
+.form_section input[type="submit"]{
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #CAAFA0;
+    border: none;
+    transition: 0.4s ease-in-out;
+}
+
+.form_section input[type="submit"]{
+    background-color: var(--muesli);
+}
+
+.form_section .btnlogs:hover{
+    cursor: pointer;
+    background-color: #A0BBCA;
+    color: var(--light-text);
+    transform: translateY(-5px);
+}
+.form_section input[type="submit"]:hover{
+    cursor: pointer;
+    background-color: #5F91AF   ;
+    color: var(--light-text);
+}
+
+.form_section .btnlogs::before{
+    content: "";
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 5px;
+}
 .table_component svg{
     width: auto;
     height: 4vh;
@@ -274,7 +307,7 @@ input[name="txtsearch"]{
     margin-top: 15px;
 }
 .table_component {
-    overflow: auto;
+    overflow: hidden;
     width: 100%;
     height: auto;
 }
@@ -370,7 +403,6 @@ input[name="txtsearch"]{
     width: 100%;
     height: 100%;
     overflow: auto;
-    padding: 20px;
     background-color: rgba(0, 0, 0, 0.6);
     align-items: center;
     justify-content: center;
@@ -378,24 +410,27 @@ input[name="txtsearch"]{
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
-    padding: 50px;
+    margin: 0 auto;
+    padding: 20px 30px;
     border: 1px solid #888;
-    width: 30%;
+    width: 70%;
+    max-width: 900px;
+    max-height: 80%;
+    overflow-y: auto;
+    border-radius: 10px;
     text-align: center;
-    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content .close {
     position: absolute;
-    top: calc(30% - 20px);
+    top: 10px;
+    right: 20px;
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
 }
-
-
 
 .modal-content .close:hover,
 .modal-content .close:focus {
@@ -404,24 +439,57 @@ input[name="txtsearch"]{
     cursor: pointer;
 }
 
-.confirm-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
+.modal-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-.cancel-btn {
-    background-color: #f44336;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.tblmanage {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 16px;
+    text-align: left;
+}
+
+.tblmanage th,
+.tblmanage td {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+}
+
+.tblmanage th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.tblmanage td {
+    background-color: #fff;
+    color: #555;
+    text-align: center;
+}
+
+.tblmanage tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tblmanage tr:hover {
+    background-color: #f1f1f1;
+}
+
+.err-msg {
+    color: red;
+    font-size: 16px;
+    margin-top: 20px;
 }
 
 #php_error .msg{
@@ -438,18 +506,4 @@ input[name="txtsearch"]{
     font-weight: 600;
     color: #010124; /* Darker navy blue */
     margin-bottom: 20px;
-}
-
-.confirm-btn {
-    background-color: #32CD32; /* Lime green */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.confirm-btn:hover {
-    background-color: #28a745; /* Darker green for hover effect */
 }
