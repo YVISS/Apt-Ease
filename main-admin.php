@@ -1,7 +1,26 @@
 <?php
-require_once 'config.php';
-include 'sessionchecker.php';
-include 'errors.php';
+require_once "config.php";
+include "sessionchecker.php"; // Ensure the user is logged in
+include "errors.php";
+
+// Initialize variables for counts
+$tenantCount = 0;
+$accountCount = 0;
+
+// Query to count the number of tenants
+$tenantQuery = "SELECT COUNT(*) AS tenantCount FROM tbltenants";
+if ($result = mysqli_query($link, $tenantQuery)) {
+    $row = mysqli_fetch_assoc($result);
+    $tenantCount = $row['tenantCount'];
+}
+
+// Query to count the number of accounts
+$accountQuery = "SELECT COUNT(*) AS accountCount FROM tblaccounts";
+if ($result = mysqli_query($link, $accountQuery)) {
+    $row = mysqli_fetch_assoc($result);
+    $accountCount = $row['accountCount'];
+}
+
 $usertype = $_SESSION['usertype'];
 $username = $_SESSION['username'];
 ?>
@@ -14,13 +33,8 @@ $username = $_SESSION['username'];
     <link rel="stylesheet" href="css/defaults/main-defaults.css">
     <link rel="stylesheet" href="css/modern-normalize.css">
     <link rel="stylesheet" href="css/main-admin.css">
-    <title>Main Admin Page - Apt Ease</title>
+    <title>Main Admin Dashboard - Apt Ease</title>
 </head>
-
-</div>
-<div class="lower__nav">
-    <a href="logout.php"></a>
-</div>
 
 <body>
     <nav class="sidebar">
@@ -38,8 +52,13 @@ $username = $_SESSION['username'];
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="main-admin.php">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
-                            <span class="text nav-text">Home</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                            </svg>
+                            <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -88,7 +107,14 @@ $username = $_SESSION['username'];
                     </li>
                     <li class="nav-link">
                         <a href="logs.php">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                                <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                                <path d="M3 6l0 13" />
+                                <path d="M12 6l0 13" />
+                                <path d="M21 6l0 13" />
+                            </svg>
                             <span class="text nav-text">Logs</span>
                         </a>
                     </li>
@@ -120,16 +146,21 @@ $username = $_SESSION['username'];
                 </div>
             </header>
             <div class="main-content">
-                <div class="page-title">
+                <div class="dashboard">
                     <h1>Main Admin</h1>
+                    <h3>Admin Dashboard</h3>
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <h2>Total Tenants</h2>
+                            <p><?php echo $tenantCount . " / 4";  ?></p>
+                        </div>
+                        <div class="card">
+                            <h2>Total Accounts</h2>
+                            <p><?php echo $accountCount; ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <footer>
-                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
-            </footer>
-            <script>
-                document.getElementById("year").textContent = new Date().getFullYear();
-            </script>
         </div>
     </div>
 

@@ -198,12 +198,7 @@ $username = $_SESSION['username'];
                     ?>
                 </div>
             </div>
-            <footer>
-                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
-            </footer>
-            <script>
-                document.getElementById("year").textContent = new Date().getFullYear();
-            </script>
+           
         </div>
     </div>
     <script>

@@ -53,7 +53,7 @@ if (isset($_SESSION['username'])) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" width="device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/defaults/main-defaults.css">
 
     <link rel="stylesheet" href="css/modern-normalize.css">
@@ -138,21 +138,33 @@ if (isset($_SESSION['username'])) {
             </header>
             <div class="main-content">
                 <div class="page-title">
-                    <h1>Main Tenant</h1><br>
-                    <h3>Welcome, <?php echo $tenant['firstname']  . " " . $tenant['lastname']; ?></h3>
-                    <p><strong>Apartment No:</strong> <?= $tenant['apartmentNo']; ?></p>
-                    <p><strong>Contact No:</strong> <?= $tenant['contactNo']; ?></p>
-                    <p><strong>Downpayment Status:</strong> <?= $tenant['downpayment']; ?></p>
-                    <p><strong>Added By:</strong> <?= $tenant['addedby']; ?></p>
-                    <p><strong>Date Added:</strong> <?= $tenant['dateadded']; ?></p>
+                    <h1>Main Tenant</h1>
+                    <h3>Welcome, <?php echo $tenant['firstname'] . " " . $tenant['lastname']; ?></h3>
+                    <div class="tenant-info">
+                        <div class="info-card">
+                            <p><strong>Apartment No:</strong></p>
+                            <p><?= $tenant['apartmentNo']; ?></p>
+                        </div>
+                        <div class="info-card">
+                            <p><strong>Contact No:</strong></p>
+                            <p><?= $tenant['contactNo']; ?></p>
+                        </div>
+                        <div class="info-card">
+                            <p><strong>Downpayment Status:</strong></p>
+                            <p><?= $tenant['downpayment']; ?></p>
+                        </div>
+                        <div class="info-card">
+                            <p><strong>Added By:</strong></p>
+                            <p><?= $tenant['addedby']; ?></p>
+                        </div>
+                        <div class="info-card">
+                            <p><strong>Date Added:</strong></p>
+                            <p><?= $tenant['dateadded']; ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <footer>
-                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
-            </footer>
-            <script>
-                document.getElementById("year").textContent = new Date().getFullYear();
-            </script>
+            
         </div>
     </div>
 
