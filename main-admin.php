@@ -119,7 +119,12 @@ include 'errors.php';
                     <h1>Main Admin</h1>
                 </div>
             </div>
-            <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
+            <footer>
+                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+            </footer>
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
     </div>
 

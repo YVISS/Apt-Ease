@@ -189,23 +189,29 @@ $usertype = $_SESSION['usertype'];
                     ?>
                 </div>
                 <div class="form_section">
+
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <?php
                         if ($_SESSION['usertype'] == "TENANT") {
-                            echo '
-                        <button class="btncreate" type="button" onclick="window.location.href=\'submit-maintenance.php\'">Submit Maintenance</button>';
+                            echo '<div class="frmbtns">';
+                            echo '<button class="btncreate" type="button" onclick="window.location.href=\'submit-maintenance.php\'">Submit Maintenance</button>';
+                            echo '<button class="btnlogs" type="button" onclick="openLogsModal()">View Records</button>';
+                            echo "</div>";
                         }
                         ?>
                         <?php
                         if ($usertype == "LANDLORD") {
+                            echo '<div class="frmbtns">';
                             echo '<button class="btnlogs" type="button" onclick="openLogsModal()">View Records</button>';
+                            echo "</div>";
                         }
                         ?>
                         <input type="text" name="txtsearch" placeholder="Search tenant....">
                         <input type="submit" name="btnsearch" value="Search">
                     </form>
+
                 </div>
-                <div class="table_component">
+                <div class="table_component table-container">
                     <?php
                     // Fetch and display maintenance records
                     if ($usertype == 'LANDLORD') {
@@ -242,14 +248,15 @@ $usertype = $_SESSION['usertype'];
                                 }
                                 echo "</table>";
                             } else {
-                                echo "<p>No maintenance records found.</p>";
+                                echo "<p class='err-msg'>No maintenance records found.</p>";
                             }
                         } else {
-                            echo "<p>Error loading maintenance records.</p>";
+                            echo "<p class='err-msg'>Error loading maintenance records.</p>";
                         }
                     }
                     ?>
                 </div>
+
                 <!-- Confirmation Modal -->
                 <div id="confirmModal" class="modal">
                     <div class="modal-content">
@@ -278,7 +285,12 @@ $usertype = $_SESSION['usertype'];
                 </div>
             </div>
 
-            <footer>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
+            <footer>
+                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+            </footer>
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
     </div>
 </body>

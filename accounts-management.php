@@ -132,7 +132,7 @@ $username = $_SESSION['username'];
     </nav>
     <div class="wrapper">
         <div class="wrapper-container">
-        <header>
+            <header>
                 <div class="header_logo">
                     <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
                     <div class="user-info">
@@ -158,7 +158,9 @@ $username = $_SESSION['username'];
                 </div>
                 <div class="form_section">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                        <button class="btncreate" type="button" onclick="window.location.href='create-account.php'">Create Account</button>
+                        <div class="frmbtns">
+                            <button class="btncreate" type="button" onclick="window.location.href='create-account.php'">Create Account</button>
+                        </div>
                         <input type="text" name="txtsearch" placeholder="Search by username or usertype....">
                         <input type="submit" name="btnsearch" value="Search">
                     </form>
@@ -278,7 +280,12 @@ $username = $_SESSION['username'];
                     </div>
                 </div>
             </div>
-            <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
+            <footer>
+                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+            </footer>
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
     </div>
 

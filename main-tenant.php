@@ -45,6 +45,7 @@ if (isset($_SESSION['username'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +55,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="css/main-tenant.css">
     <title>Main Tenant Page - Apt Ease</title>
 </head>
+
 <body>
     <nav class="sidebar">
         <header>
@@ -68,9 +70,14 @@ if (isset($_SESSION['username'])) {
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
-                <li class="nav-link">
+                    <li class="nav-link">
                         <a href="main-tenant.php">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                            </svg>
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
@@ -88,7 +95,7 @@ if (isset($_SESSION['username'])) {
                         </a>
                     </li>
                     <li class="nav-link">
-                    <a href="maintenance-management.php">
+                        <a href="maintenance-management.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
@@ -116,26 +123,31 @@ if (isset($_SESSION['username'])) {
     </nav>
     <div class="wrapper">
         <div class="wrapper-container">
-        <header>
-            <div class="header_logo">
-                <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
-            </div>
-        </header>
-        <div class="main-content">
-            <div class="page-title">
-                <h1>Main Tenant</h1><br>
-                <h3>Welcome, <?php echo $tenant['firstname']  . " " . $tenant['lastname']; ?></h3>
+            <header>
+                <div class="header_logo">
+                    <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
+                </div>
+            </header>
+            <div class="main-content">
+                <div class="page-title">
+                    <h1>Main Tenant</h1><br>
+                    <h3>Welcome, <?php echo $tenant['firstname']  . " " . $tenant['lastname']; ?></h3>
                     <p><strong>Apartment No:</strong> <?= $tenant['apartmentNo']; ?></p>
                     <p><strong>Contact No:</strong> <?= $tenant['contactNo']; ?></p>
                     <p><strong>Downpayment Status:</strong> <?= $tenant['downpayment']; ?></p>
                     <p><strong>Added By:</strong> <?= $tenant['addedby']; ?></p>
                     <p><strong>Date Added:</strong> <?= $tenant['dateadded']; ?></p>
+                </div>
             </div>
+            <footer>
+                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+            </footer>
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
-        <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
-        </div>
-        </div>
-    
+    </div>
+
     <script>
         const body = document.querySelector("body"),
             sidebar = body.querySelector(".sidebar"),
@@ -164,4 +176,5 @@ if (isset($_SESSION['username'])) {
         });
     </script>
 </body>
+
 </html>

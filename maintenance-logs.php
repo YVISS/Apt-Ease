@@ -1,9 +1,7 @@
 <?php
 require_once "config.php";
 include "sessionchecker.php"; // Include session checker
-include "errors.php"; // Include error handling
-$usertype = $_SESSION['usertype'];
-$username = $_SESSION['username'];
+
 function buildTable($result)
 {
     if (mysqli_num_rows($result) > 0) {
@@ -30,13 +28,31 @@ function buildTable($result)
     }
 }
 
-$sql = "SELECT * FROM tblmaintenancelogs ORDER BY dateConfirmed DESC";
+// Determine the SQL query based on usertype
+if ($_SESSION['usertype'] === 'LANDLORD') {
+    // LANDLORD: Show all logs
+    $sql = "SELECT * FROM tblmaintenancelogs ORDER BY dateConfirmed DESC";
+} elseif ($_SESSION['usertype'] === 'TENANT') {
+    // TENANT: Show only logs for the logged-in tenant
+    $sql = "SELECT * FROM tblmaintenancelogs WHERE username = ? ORDER BY dateConfirmed DESC";
+} else {
+    echo "<p class='err-msg'>Unauthorized access.</p>";
+    exit();
+}
+
+// Execute the query
 if ($stmt = mysqli_prepare($link, $sql)) {
+    if ($_SESSION['usertype'] === 'TENANT') {
+        // Bind the username parameter for tenants
+        mysqli_stmt_bind_param($stmt, "s", $_SESSION['username']);
+    }
     if (mysqli_stmt_execute($stmt)) {
         $result = mysqli_stmt_get_result($stmt);
         buildTable($result);
+    } else {
+        echo "<p class='err-msg'>Error executing query.</p>";
     }
 } else {
-    echo "Error loading logs.";
+    echo "<p class='err-msg'>Error preparing query.</p>";
 }
 ?>

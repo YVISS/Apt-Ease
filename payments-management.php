@@ -175,14 +175,18 @@ $username = $_SESSION['username'];
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <?php
                         if ($_SESSION['usertype'] == "TENANT") {
-                            echo '
-                                    <button class="btncreate" type="button" onclick="window.location.href=\'submit-payment.php\'">Submit Payment</button>';
+                            echo '<div class="frmbtns">';
+                            echo '<button class="btncreate" type="button" onclick="window.location.href=\'submit-payment.php\'">Submit Payment</button>';
+                            echo '<button class="btnlogs" type="button" onclick="openLogsModal()">View Records</button>';
+                            echo "</div>";
                         }
                         ?>
                         <?php
                         if ($usertype == "LANDLORD") {
+                            echo '<div class="frmbtns">';
                             echo '<button class="btnlogs" type="button" onclick="openLogsModal()">View Records</button>';
-                        }
+                            echo "</div>";
+                            }
                         ?>
                         <input type="text" name="txtsearch" placeholder="Search tenant....">
                         <input type="submit" name="btnsearch" value="Search">
@@ -289,7 +293,12 @@ $username = $_SESSION['username'];
                 </div>
 
             </div>
-            <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
+            <footer>
+                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+            </footer>
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
     </div>
 </body>

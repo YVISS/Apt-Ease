@@ -30,13 +30,30 @@ function buildTable($result)
     }
 }
 
-$sql = "SELECT * FROM tblpaymentslogs ORDER BY username DESC";
+// Determine the SQL query based on usertype
+if ($_SESSION['usertype'] === 'LANDLORD') {
+    // LANDLORD: Show all logs
+    $sql = "SELECT * FROM tblpaymentslogs ORDER BY username DESC";
+} elseif ($_SESSION['usertype'] === 'TENANT') {
+    // TENANT: Show only logs for the logged-in tenant
+    $sql = "SELECT * FROM tblpaymentslogs WHERE username = ? ORDER BY date DESC";
+} else {
+    echo "<p class='err-msg'>Unauthorized access.</p>";
+    exit();
+}
+
 if ($stmt = mysqli_prepare($link, $sql)) {
+    if ($_SESSION['usertype'] === 'TENANT') {
+        // Bind the username parameter for tenants
+        mysqli_stmt_bind_param($stmt, "s", $_SESSION['username']);
+    }
     if (mysqli_stmt_execute($stmt)) {
         $result = mysqli_stmt_get_result($stmt);
         buildTable($result);
+    } else {
+        echo "<p class='err-msg'>Error executing query.</p>";
     }
 } else {
-    echo "Error loading logs.";
+    echo "<p class='err-msg'>Error preparing query.</p>";
 }
 ?>

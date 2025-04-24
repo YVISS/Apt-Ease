@@ -198,9 +198,41 @@ $username = $_SESSION['username'];
                     ?>
                 </div>
             </div>
-            <footer>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
+            <footer>
+                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+            </footer>
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
     </div>
+    <script>
+         const body = document.querySelector("body"),
+            sidebar = body.querySelector(".sidebar"),
+            toggle = sidebar.querySelector(".toggle");
+
+        toggle.addEventListener("click", () => {
+            // Toggle the 'close' class on the sidebar
+            const isClosed = sidebar.classList.toggle("close");
+
+            // Update the SVG icon based on the sidebar state
+            if (isClosed) {
+                toggle.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right-pipe">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M6 6l6 6l-6 6" />
+                    <path d="M17 5v13" />
+                </svg>`;
+            } else {
+                toggle.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left-pipe">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M7 6v12" />
+                    <path d="M18 6l-6 6l6 6" />
+                </svg>`;
+            }
+        });
+    </script>
 </body>
 
 </html>

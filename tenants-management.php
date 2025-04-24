@@ -179,13 +179,16 @@ $usertype = $_SESSION['usertype'];
                 </div>
                 <div class="form_section">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                        <div class="frmbtns">
+                        
                         <button class="btncreate" type="button" onclick="window.location.href='add-tenant.php'">Add Tenant</button>
+                        </div>
                         <input type="text" name="txtsearch" placeholder="Search tenant....">
                         <input type="submit" name="btnsearch" value="Search">
                     </form>
                 </div>
 
-                <div class="table_component" role="region" tabindex="0">
+                <div class="table_component table-container"  role="region" tabindex="0">
                     <?php
                     function buildTable($result)
                     {
@@ -300,7 +303,12 @@ $usertype = $_SESSION['usertype'];
                     </div>
                 </div>
             </div>
-            <footer>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, quisquam.</footer>
+            <footer>
+                <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
+            </footer>
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
     </div>
 </body>

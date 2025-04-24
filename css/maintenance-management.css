@@ -11,7 +11,7 @@ body{
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
-    background-image:linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url(../src/apt-ease-bg.png);
+    background-image:linear-gradient(-180deg,rgba(0,0,0,0.20), rgba(0,0,0,0.60)), url(../src/apt-ease-bg.png);
     background-attachment: fixed;
     display: flex;
     overflow-X: hidden;
@@ -53,7 +53,7 @@ body{
     width: 250px;
     background-color: var(--light-text);
     padding: 10px 14px;
-    transition: 0.5s ease-in-out;
+    transition: 0.6s ease-in-out;
 }
 
 .sidebar .image-text img{
@@ -160,6 +160,24 @@ header .image-text .header-text{
     min-width: 60px;
     font-size: 40px;
 }
+.sidebar .text {
+    visibility: hidden; /* Hide the text */
+    opacity: 0; /* Make it invisible */
+    transition: visibility 0s, opacity 0.4s ease-in-out; /* Delay visibility until opacity transition */
+}
+
+/* Show the text when the sidebar is fully extended */
+.sidebar:not(.close) .text {
+    visibility: visible; /* Make the text visible */
+    opacity: 1; /* Fully visible */
+    transition: visibility 0s 0.4s, opacity 0.4s ease-in-out; /* Delay visibility to match the sidebar transition */
+}
+
+/* Prevent overflow issues */
+.sidebar {
+    overflow: hidden; /* Prevent content from spilling out during transition */
+    transition: width 0.6s ease-in-out; /* Smooth transition for sidebar width */
+}
 
 .sidebar li  a:hover{
     background: var(--leather);
@@ -167,12 +185,13 @@ header .image-text .header-text{
 
 .sidebar li .icon,
 .sidebar li .text{
-    transition: 0.6s ease-in-out;
+    transition: visibility 0s 0.4s, opacity 0.4s ease-in-out; /* Delay visibility to match the sidebar transition */
     color: var(--darker-gray);
 }
 
 .sidebar li  a:hover .icon,
 .sidebar li  a:hover .text{
+    transition: 0.4s ease-in-out;
     color: var(--light-text);
 }
 
@@ -216,28 +235,74 @@ header .image-text .header-text{
 }
 
 footer{
-    position: absolute;
+    position: static;
     bottom: 0;
-    width: calc(100% - 250px);
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top: 200px;
+    color: var(--light-text);
 }
 /* form styles */
-
-.form_section .btncreate, 
+.form_section{
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+}
+.form_section .btncreate,
+.form_section .btnlogs, 
 .form_section input[type="submit"]{
     width: auto;
-    height: auto;
+    height: 40px;
     padding: 10px;
-    border-radius: 5px;
-    background-color: #CAAFA0;
+    border-radius: 5px;    
+    background-color: var(--fuscous-gray);
+    color: var(--light-text);
     border: none;
     transition: 0.4s ease-in-out;
 }
 
-.form_section input[type="submit"]{
-    background-color: var(--muesli);
+.form_section .frmbtns{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.form_section .frmbtns button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+}
+.confirm-btn{
+    width: auto;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--light-text);
+    border: none;
+    transition: 0.4s ease-in-out;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+.cancel-btn{
+    width: auto;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--light-text);
+    border: none;
+    transition: 0.4s ease-in-out;
+    background-color: #f44336;
+    cursor: pointer;
 }
 
 .form_section .btncreate:hover{
@@ -248,27 +313,16 @@ footer{
 }
 .form_section input[type="submit"]:hover{
     cursor: pointer;
-    background-color: #5F91AF   ;
+    background-color: #5F91AF;
     color: var(--light-text);
 }
 
 .form_section .btncreate::before{
     content: "+";
-    font-size: 20px;
-    display: inline-block;
-    margin-right: 5px;
+    font-size: calc(24px * 3.16px);
+    display: inline;
 }
 
-.form_section .btnlogs, 
-.form_section input[type="submit"]{
-    width: auto;
-    height: auto;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #CAAFA0;
-    border: none;
-    transition: 0.4s ease-in-out;
-}
 
 .form_section input[type="submit"]{
     background-color: var(--muesli);
@@ -280,11 +334,7 @@ footer{
     color: var(--light-text);
     transform: translateY(-5px);
 }
-.form_section input[type="submit"]:hover{
-    cursor: pointer;
-    background-color: #5F91AF   ;
-    color: var(--light-text);
-}
+
 
 .form_section .btnlogs::before{
     content: "";
@@ -300,7 +350,7 @@ footer{
 /*TABLE STYLES*/
 input[name="txtsearch"]{
     width: 500px; /* Makes input fields stretch */
-    height: 5vh;
+    height: 50px;
     padding:8px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -447,7 +497,7 @@ input[name="txtsearch"]{
 }
 
 .table-container {
-    overflow-x: auto;
+    overflow: hidden;
     margin-top: 20px;
 }
 
@@ -506,4 +556,12 @@ input[name="txtsearch"]{
     font-weight: 600;
     color: #010124; /* Darker navy blue */
     margin-bottom: 20px;
+}
+
+.table-container .err-msg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    gap: 5px;
 }
