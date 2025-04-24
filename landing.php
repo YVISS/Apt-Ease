@@ -33,7 +33,6 @@
             <img src="src/aptease-index.png" alt="">
         </div>
         <footer>
-<<<<<<< HEAD
             <div >
                 <img src="src/apt-ease-logo.png" alt="logo">
             </div>
@@ -45,13 +44,11 @@
             </div>
 
         </footer>
-=======
             <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
         </footer>
         <script>
             document.getElementById("year").textContent = new Date().getFullYear();
         </script>
->>>>>>> 65942fd5426c2fe6c445e5aebdd284f80a1bc640
     </div>
     
     <script>

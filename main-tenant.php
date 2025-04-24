@@ -3,41 +3,44 @@
 require_once "config.php"; // Database connection
 include "sessionchecker.php"; // Ensure the user is logged in
 
+// Initialize error message
+$errorMessage = "";
+
 // Check if user is logged in (assuming you store the username in the session)
 if (isset($_SESSION['username'])) {
     // Fetch the logged-in user's username
     $username = $_SESSION['username'];
-    
+
     // Query to get tenant information based on the username
     $sql = "SELECT t.apartmentNo, t.firstname, t.middlename, t.lastname, t.contactNo, t.downpayment, t.addedby, t.dateadded
             FROM tbltenants t
             JOIN tblaccounts a ON t.username = a.username
             WHERE t.username = ?";
-    
+
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind the parameter (username)
         mysqli_stmt_bind_param($stmt, "s", $username);
-        
+
         // Execute the query
         if (mysqli_stmt_execute($stmt)) {
             // Get the result
             $result = mysqli_stmt_get_result($stmt);
-            
+
             // Check if the tenant data exists
             if (mysqli_num_rows($result) > 0) {
                 // Fetch the tenant data
-                $tenant = mysqli_fetch_assoc($result);
+                $tenant = mysqli_fetch_array($result, MYSQLI_ASSOC);
             } else {
-                $tenant = null;
+                $errorMessage = "No tenant data found for the logged-in user.";
             }
         } else {
-            $tenant = null;
+            $errorMessage = "Failed to execute the query. Please try again later.";
         }
     } else {
-        $tenant = null;
+        $errorMessage = "Failed to prepare the query. Please contact the administrator.";
     }
 } else {
-    $tenant = null;
+    $errorMessage = "You are not logged in. Please log in to access this page.";
 }
 ?>
 <!DOCTYPE html>
@@ -65,6 +68,12 @@ if (isset($_SESSION['username'])) {
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
+                <li class="nav-link">
+                        <a href="main-tenant.php">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
                     <li class="nav-link">
                         <a href="payments-management.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
@@ -115,7 +124,7 @@ if (isset($_SESSION['username'])) {
         <div class="main-content">
             <div class="page-title">
                 <h1>Main Tenant</h1><br>
-                <h3>Welcome, <?= $tenant['firstname'] . " " . $tenant['lastname']; ?></h3>
+                <h3>Welcome, <?php echo $tenant['firstname']  . " " . $tenant['lastname']; ?></h3>
                     <p><strong>Apartment No:</strong> <?= $tenant['apartmentNo']; ?></p>
                     <p><strong>Contact No:</strong> <?= $tenant['contactNo']; ?></p>
                     <p><strong>Downpayment Status:</strong> <?= $tenant['downpayment']; ?></p>

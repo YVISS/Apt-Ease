@@ -85,31 +85,37 @@ $usertype = $_SESSION['usertype'];
                                     </a>
                                 </li>';
                             break;
-                        case 'TENANT':
-                            echo '<li class="nav-link">
-                                    <a href="payments-management.php">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
-                                            <path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" />
-                                            <path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" />
-                                            <path d="M3 6v10c0 .888 .772 1.45 2 2" />
-                                            <path d="M3 11c0 .888 .772 1.45 2 2" />
-                                        </svg>
-                                        <span class="text nav-text">Payments</span>
-                                    </a>
-                                </li>';
-                            echo '<li class="nav-link">
-                                    <a href="maintenance-management.php">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
-                                            <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0z" />
-                                        </svg>
-                                        <span class="text nav-text">Maintenance</span>
-                                    </a>
-                                </li>';
-                            break;
+                            case 'TENANT':
+                                echo '<li class="nav-link">
+                            <a href="main-tenant.php">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                                <span class="text nav-text">Home</span>
+                            </a>
+                        </li>';
+                                echo '<li class="nav-link">
+                                            <a href="payments-management.php">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coins">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
+                                                    <path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" />
+                                                    <path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" />
+                                                    <path d="M3 6v10c0 .888 .772 1.45 2 2" />
+                                                    <path d="M3 11c0 .888 .772 1.45 2 2" />
+                                                </svg>
+                                                <span class="text nav-text">Payments</span>
+                                            </a>
+                                        </li>';
+                                echo '<li class="nav-link">
+                                            <a href="maintenance-management.php">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hammer">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
+                                                    <path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0z" />
+                                                </svg>
+                                                <span class="text nav-text">Maintenance</span>
+                                            </a>
+                                        </li>';
+                                break;
                         default:
                             echo "<li>Unknown usertype.</li>";
                             break;
@@ -251,6 +257,31 @@ let errormsg = document.getElementById("php_error");
         }
     }, 3000);
     
+    const body = document.querySelector("body"),
+        sidebar = body.querySelector(".sidebar"),
+        toggle = sidebar.querySelector(".toggle");
+
+    toggle.addEventListener("click", () => {
+        // Toggle the 'close' class on the sidebar
+        const isClosed = sidebar.classList.toggle("close");
+
+        // Update the SVG icon based on the sidebar state
+        if (isClosed) {
+            toggle.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right-pipe">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M6 6l6 6l-6 6" />
+                    <path d="M17 5v13" />
+                </svg>`;
+        } else {
+            toggle.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left-pipe">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M7 6v12" />
+                    <path d="M18 6l-6 6l6 6" />
+                </svg>`;
+        }
+    });
 </script>
 
 </html>

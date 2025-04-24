@@ -30,6 +30,25 @@ $username = $_SESSION['username'];
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
+                <nav class="sidebar">
+        <header>
+            <i class="toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left-pipe">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M7 6v12" />
+                    <path d="M18 6l-6 6l6 6" />
+                </svg>
+            </i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                <li class="nav-link">
+                        <a href="main-admin.php">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
                     <li class="nav-link">
                         <a href="accounts-management.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users">
@@ -74,6 +93,29 @@ $username = $_SESSION['username'];
                             <span class="text nav-text">Maintenance</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="logs.php">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
+                            <span class="text nav-text">Logs</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="logout">
+                <li class="nav-link">
+                    <a href="logout.php">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
+                            <path d="M15 12h-12l3 -3" />
+                            <path d="M6 15l-3 -3" />
+                        </svg>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
                 </ul>
             </div>
             <div class="logout">
