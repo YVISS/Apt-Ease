@@ -16,7 +16,7 @@ html, body {
 
 body {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../src/apt-ease-bg.png');
+    background: linear-gradient(120deg,rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('../src/apt-ease-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

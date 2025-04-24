@@ -2,7 +2,7 @@
 require_once "config.php";
 include "sessionchecker.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm-btn']) && isset($_POST['username']) && isset($_POST['amount'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm-btn']) && isset($_POST['username']) && isset($_POST['amount']) && isset($_POST['date'])) {
     $username = $_POST['username'];
     $amount = $_POST['amount'];
 

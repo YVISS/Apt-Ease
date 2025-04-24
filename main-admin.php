@@ -2,6 +2,8 @@
 require_once 'config.php';
 include 'sessionchecker.php';
 include 'errors.php';
+$usertype = $_SESSION['usertype'];
+$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,6 +114,9 @@ include 'errors.php';
             <header>
                 <div class="header_logo">
                     <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
+                    <div class="user-info">
+                        <?php echo $username . " | " . $usertype; ?>
+                    </div>
                 </div>
             </header>
             <div class="main-content">

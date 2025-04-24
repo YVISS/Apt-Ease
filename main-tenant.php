@@ -1,7 +1,12 @@
 <?php
 // Include the necessary files
+
 require_once "config.php"; // Database connection
 include "sessionchecker.php"; // Ensure the user is logged in
+
+
+$usertype = $_SESSION['usertype'];
+$username = $_SESSION['username'];
 
 // Initialize error message
 $errorMessage = "";
@@ -126,6 +131,9 @@ if (isset($_SESSION['username'])) {
             <header>
                 <div class="header_logo">
                     <img src="src/apt-ease-logo.png" alt="" style="width: auto; height: 80px;">
+                    <div class="user-info">
+                        <?php echo $username . " | " . $usertype; ?>
+                    </div>
                 </div>
             </header>
             <div class="main-content">

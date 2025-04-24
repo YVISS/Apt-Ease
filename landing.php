@@ -18,7 +18,6 @@
                     <li>
                         <div class="nav__links">
                             <a href="landing.php">Home</a>
-                            <a href="about.php">About</a>
                         </div>
                         <button type="submit"><a href="login.php">Login</a></button>
                     </li>
@@ -43,8 +42,6 @@
                 <p>&copy; <span id="year"></span> Apt Ease. All Rights Reserved.</p>
             </div>
 
-        </footer>
-            <p>&copy; <span id="year"></span> AptEase. All Rights Reserved.</p>
         </footer>
         <script>
             document.getElementById("year").textContent = new Date().getFullYear();
