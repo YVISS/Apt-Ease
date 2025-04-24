@@ -217,10 +217,18 @@ $usertype = $_SESSION['usertype'];
                                     echo "<td>" . htmlspecialchars($row['dateSubmitted']) . "</td>";
                                     if ($usertype == 'LANDLORD') {
                                         echo "<td>
-                                                <form method='POST' action=''>
+                                                <form method='POST' action='confirm-management.php' onsubmit='return confirmAction();'>
                                                     <input type='hidden' name='ticketID' value='" . htmlspecialchars($row['ticketID']) . "'>
+                                                    <input type='hidden' name='username' value='" . htmlspecialchars($row['username']). "'>
                                                     <button type='submit' name='btnconfirm' class='confirm-btn'>Confirm</button>
                                                 </form>
+
+                                                <script>
+                                                function confirmAction() {
+                                                // Display a confirmation dialog with single quotes
+                                                return confirm('Are you sure you want to confirm this action?');
+                                                }
+                                                </script>
                                               </td>";
                                     }
                                     echo "</tr>";
