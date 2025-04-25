@@ -267,6 +267,17 @@ footer{
     transition: 0.4s ease-in-out;
 }
 
+.form_section .frmbtns button{
+    width: auto;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;    
+    background-color: var(--fuscous-gray);
+    color: var(--light-text);
+    border: none;
+    transition: 0.4s ease-in-out;
+}
+
 .form_section .frmbtns{
     width: 100%;
     display: flex;
